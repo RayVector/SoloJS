@@ -7,10 +7,7 @@ export default class {
   init(nodeId) {
     if (nodeId === String || nodeId !== undefined) {
       // mount:
-      // attention:
-      document.addEventListener("DOMContentLoaded", function (event) {
-        this.appNode = document.getElementById(nodeId);
-      });
+      this.appNode = document.getElementById(nodeId);
     }
   }
 
