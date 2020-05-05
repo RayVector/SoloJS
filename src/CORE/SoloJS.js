@@ -6,7 +6,11 @@ export default class {
 
   init(nodeId) {
     if (nodeId === String || nodeId !== undefined) {
-      this.appNode = document.getElementById(nodeId);
+      // mount:
+      // attention:
+      document.addEventListener("DOMContentLoaded", function (event) {
+        this.appNode = document.getElementById(nodeId);
+      });
     }
   }
 
