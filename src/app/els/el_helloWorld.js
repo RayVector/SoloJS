@@ -4,7 +4,6 @@ const styles = {
   cursor: 'pointer'
 };
 
-
 export default {
   id: '',
   node: 'span',
