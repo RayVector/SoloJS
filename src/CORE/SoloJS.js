@@ -11,7 +11,7 @@ export default class {
     }
   }
 
-  // new element:
+  // create node:
   buildNode(el) {
     let node = document.createElement(el.node || "div");
     // add props:
@@ -52,9 +52,9 @@ export default class {
 
   }
 
-  createNode(node, parent = null) {
+  // mount:
+  mountNode(node, parent = null) {
     // create node
-
     if (parent) {
       let parentNode = this.buildNode(parent);
       parentNode.appendChild(this.buildNode(node));
@@ -70,9 +70,9 @@ export default class {
   treeController(el, parent) {
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
       el.childList.forEach(child => this.treeController(child, el));
-      this.createNode(el, null)
+      this.mountNode(el, null)
     } else {
-      this.createNode(el, parent)
+      this.mountNode(el, parent)
     }
   }
 
