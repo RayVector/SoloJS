@@ -8,7 +8,6 @@ export default {
   id: '',
   node: 'span',
   content: 'Click or hover me',
-
   styles,
   methods: {
     click: (e) => e.target.innerHTML = 'Magic JS!',
