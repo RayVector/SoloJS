@@ -1,6 +1,7 @@
 export default class {
   constructor(nodeId) {
     this.appNode = null;
+    this.chainedNode = null;
     this.init(nodeId)
   }
 
@@ -17,28 +18,33 @@ export default class {
     // add props:
     if (el.id) this.addNodeId(node, el);
     if (el.content) this.addNodeContent(node, el);
+    if (el.props) this.addProps(node, el);
     if (el.styles) this.addNodeStyles(node, el);
     if (el.methods) if (Object.keys(el.methods).length > 0) this.addNodeMethods(node, el);
 
     if (node) {
       // Observe:
       const config = {
-        attributes: true,
         childList: true,
         subtree: true,
-        characterData: true,
+        attributes: true,
         characterDataOldValue: true,
+        characterData: true,
         attributeOldValue: true,
       };
       const callback = function (mutationsList, observer) {
         for (let mutation of mutationsList) {
           if (mutation.type === 'childList') {
             const oldValue = [];
-            mutation.removedNodes.forEach(node => oldValue.push(node.data));
+            if (mutation.removedNodes.length > 0) mutation.removedNodes.forEach(node => {
+              if (node.data) return oldValue.push(node.data)
+            });
             const newValue = [];
-            mutation.addedNodes.forEach(node => newValue.push(node.data));
-            // console.log('oldValue:', oldValue);
-            // console.log('newValue:', newValue);
+            if (mutation.addedNodes.length > 0) mutation.addedNodes.forEach(node => {
+              if (node.data) return newValue.push(node.data)
+            });
+            if (oldValue.length > 0) console.log('oldValue:', oldValue);
+            if (newValue.length > 0) console.log('newValue:', newValue);
           }
         }
       };
@@ -53,26 +59,24 @@ export default class {
   }
 
   // mount:
-  mountNode(node, parent = null) {
+  mountNode(node) {
     // create node
-    if (parent) {
-      let parentNode = this.buildNode(parent);
-      parentNode.appendChild(this.buildNode(node));
-      this.appNode.appendChild(parentNode)
-    } else {
-      if (!node.hasOwnProperty('childList') || node.childList.length < 0) {
-        this.appNode.appendChild(this.buildNode(node))
-      }
-    }
+    this.appNode.appendChild(this.buildNode(node))
   }
 
   // middleware:
-  treeController(el, parent) {
+  treeController(el) {
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
-      el.childList.forEach(child => this.treeController(child, el));
-      this.mountNode(el, null)
+      // chaining:
+      this.chainedNode = this.buildNode(el);
+      el.childList.forEach(child => {
+        this.chainedNode.appendChild(this.buildNode(child))
+      });
+      this.appNode.appendChild(this.chainedNode);
     } else {
-      this.mountNode(el, parent)
+      // unchain:
+      this.chainedNode = null;
+      this.mountNode(el);
     }
   }
 
@@ -88,6 +92,12 @@ export default class {
 
   addNodeContent(node, el) {
     node.innerHTML = el.content;
+  }
+
+  addProps(node, el) {
+    for (let [key, value] of Object.entries(el.props)) {
+      node.setAttribute(key, value)
+    }
   }
 
   addNodeStyles(node, el) {
