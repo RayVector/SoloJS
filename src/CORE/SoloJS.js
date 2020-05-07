@@ -70,7 +70,7 @@ export default class {
     } else {
       // unchain:
       this.chainedNode = null;
-      this.appNode.appendChild(this.buildNode(node))
+      this.appNode.appendChild(this.buildNode(el))
     }
   }
 
