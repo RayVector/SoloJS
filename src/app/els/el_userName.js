@@ -17,19 +17,22 @@ const inputUserPassword = {
   props: {
     type: 'password',
     required: true
-  },
-  methods: {
-    input: (e) => console.log(e.target.value)
   }
 };
 
 export default {
-  content: 'Name:',
-  styles: {
-    marginBottom: '5px'
-  },
+  node: 'form',
   childList: [
-    inputUserName,
-    inputUserPassword,
+    {
+      content: 'Name:',
+      node: 'label',
+      styles: {
+        marginBottom: '5px'
+      },
+      childList: [
+        inputUserName,
+        inputUserPassword,
+      ]
+    }
   ]
 }
