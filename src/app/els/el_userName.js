@@ -1,16 +1,9 @@
-const inputStyles = {
-  marginLeft: '10px'
-};
-
-const labelStyles = {
-  marginBottom: '5px'
-};
-
-
 const inputUserName = {
   bind: 'userNameResult',
   node: 'input',
-  styles: inputStyles,
+  styles: {
+    marginLeft: '10px'
+  },
   methods: {
     input: (e, bindEl) => bindEl.innerHTML = e.target.value
   }
@@ -18,28 +11,25 @@ const inputUserName = {
 
 const inputUserPassword = {
   node: 'input',
-  styles: inputStyles,
+  styles: {
+    marginLeft: '10px'
+  },
+  props: {
+    type: 'password',
+    required: true
+  },
   methods: {
     input: (e) => console.log(e.target.value)
   }
 };
 
-
 export default {
+  content: 'Name:',
+  styles: {
+    marginBottom: '5px'
+  },
   childList: [
-    {
-      content: 'Name:',
-      styles: labelStyles,
-      childList: [
-        inputUserName
-      ]
-    },
-    {
-      content: 'Password:',
-      styles: labelStyles,
-      childList: [
-        inputUserPassword
-      ]
-    }
+    inputUserName,
+    inputUserPassword,
   ]
 }
