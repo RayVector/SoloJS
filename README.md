@@ -17,6 +17,7 @@ how to leave HTML and CSS?
 
 - MAIN: Leave HTML and CSS or combine in one data;
 - (DONE) Add child elements to elements;
+- Refactor all components to Classes;
 - Vuex/Redux analog;
 - Write API;
 - Add default els (static, native elements (def_el_hr | def_el_box | etc));
