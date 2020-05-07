@@ -59,13 +59,7 @@ export default class {
   }
 
   // mount:
-  mountNode(node) {
-    // create node
-    this.appNode.appendChild(this.buildNode(node))
-  }
-
-  // middleware:
-  treeController(el) {
+  mountNode(el) {
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
       // chaining:
       this.chainedNode = this.buildNode(el);
@@ -76,13 +70,13 @@ export default class {
     } else {
       // unchain:
       this.chainedNode = null;
-      this.mountNode(el);
+      this.appNode.appendChild(this.buildNode(node))
     }
   }
 
   // main el function:
   el(el) {
-    this.treeController(el)
+    this.mountNode(el)
   }
 
   addNodeId(node, el) {
