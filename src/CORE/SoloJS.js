@@ -7,9 +7,45 @@ export default class {
 
   init(nodeId) {
     if (nodeId === String || nodeId !== undefined) {
-      // mount:
+      // find mount place:
       this.appNode = document.getElementById(nodeId);
     }
+  }
+
+  addNodeId(node, el) {
+    node.setAttribute("id", el.id);
+  }
+
+  addNodeContent(node, el) {
+    node.innerHTML = el.content;
+  }
+
+  addProps(node, el) {
+    for (let [key, value] of Object.entries(el.props)) {
+      node.setAttribute(key, value)
+    }
+  }
+
+  addNodeStyles(node, el) {
+    for (let [key, value] of Object.entries(el.styles)) {
+      node.style[key] = value;
+    }
+  }
+
+  addNodeMethods(node, el) {
+    document.addEventListener("DOMContentLoaded", function (event) {
+      for (let key in el.methods) {
+        if (el.methods.hasOwnProperty(key)) {
+          node.addEventListener(key, e => {
+            if (el.bind) {
+              el.methods[key](e, document.getElementById(el.bind))
+            } else {
+              el.methods[key](e)
+            }
+          })
+        }
+      }
+    });
   }
 
   // create node:
@@ -64,8 +100,10 @@ export default class {
       // chaining:
       this.chainedNode = this.buildNode(el);
       el.childList.forEach(child => {
-        this.chainedNode.appendChild(this.buildNode(child))
+        this.chainedNode.appendChild(this.buildNode(child));
+        if (child.hasOwnProperty('childList')) this.mountNode(child)
       });
+
       this.appNode.appendChild(this.chainedNode);
     } else {
       // unchain:
@@ -77,43 +115,6 @@ export default class {
   // main el function:
   el(el) {
     this.mountNode(el)
-  }
-
-  addNodeId(node, el) {
-    node.attribute = "id";
-    node.setAttribute("id", el.id);
-  }
-
-  addNodeContent(node, el) {
-    node.innerHTML = el.content;
-  }
-
-  addProps(node, el) {
-    for (let [key, value] of Object.entries(el.props)) {
-      node.setAttribute(key, value)
-    }
-  }
-
-  addNodeStyles(node, el) {
-    for (let [key, value] of Object.entries(el.styles)) {
-      node.style[key] = value;
-    }
-  }
-
-  addNodeMethods(node, el) {
-    document.addEventListener("DOMContentLoaded", function (event) {
-      for (let key in el.methods) {
-        if (el.methods.hasOwnProperty(key)) {
-          node.addEventListener(key, e => {
-            if (el.bind) {
-              el.methods[key](e, document.getElementById(el.bind))
-            } else {
-              el.methods[key](e)
-            }
-          })
-        }
-      }
-    });
   }
 }
 
