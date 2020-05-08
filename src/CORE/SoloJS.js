@@ -1,3 +1,6 @@
+// parsing HTML from JS engine
+
+
 export default class {
   constructor(nodeId) {
     this.appNode = null;
@@ -94,17 +97,28 @@ export default class {
 
   }
 
+  buildTreeNodes(el) {
+    if (!this.chainedNode) this.chainedNode = this.buildNode(el);
+    if (el.hasOwnProperty('childList')) {
+      el.childList.forEach(child => this.buildTreeNodes(child))
+    }
+    this.chainedNode.appendChild(this.buildNode(el));
+  }
+
   // mount:
   mountNode(el) {
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
       // chaining:
-      this.chainedNode = this.buildNode(el);
-      el.childList.forEach(child => {
-        this.chainedNode.appendChild(this.buildNode(child));
-        if (child.hasOwnProperty('childList')) this.mountNode(child)
-      });
+      // this.chainedNode = this.buildNode(el);
+      this.buildTreeNodes(el);
+      console.log('buildTreeNodes:', this.chainedNode);
 
-      this.appNode.appendChild(this.chainedNode);
+      // el.childList.forEach(child => {
+      //   this.chainedNode.appendChild(this.buildNode(child));
+      //   if (child.hasOwnProperty('childList')) this.mountNode(child);
+      // });
+
+      // this.appNode.appendChild(this.chainedNode);
     } else {
       // unchain:
       this.chainedNode = null;

@@ -31,8 +31,8 @@ export default {
       },
       childList: [
         inputUserName,
-        inputUserPassword,
       ]
-    }
+    },
+    inputUserPassword
   ]
 }
