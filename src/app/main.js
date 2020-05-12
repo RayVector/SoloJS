@@ -5,6 +5,6 @@ import el_userNameResult from "./els/el_userNameResult";
 
 const SJS = new SoloJS("app");
 
-// SJS.el(el_helloWorld);
-// SJS.el(el_userName);
+SJS.el(el_helloWorld);
+SJS.el(el_userName);
 SJS.el(el_userNameResult);

@@ -1,10 +1,17 @@
 // parsing HTML from JS engine
+import {v4 as uuidv4} from 'uuid'
+
+let state = {
+  id: '',
+  styles: {}
+};
 
 
 export default class {
   constructor(nodeId) {
     this.appNode = null;
     this.chainedNode = null;
+    this.$id = `SJS-${uuidv4()}`;
     this.init(nodeId)
   }
 
@@ -23,7 +30,9 @@ export default class {
     node.innerHTML = el.content;
   }
 
+  // TODO: add data-set with id uuid
   addProps(node, el) {
+    node.setAttribute('data-id', el.uid);
     for (let [key, value] of Object.entries(el.props)) {
       node.setAttribute(key, value)
     }
@@ -55,6 +64,7 @@ export default class {
   buildNode(el) {
     let node = document.createElement(el.node || "div");
     // add props:
+    if (!el.uid) el.uid = uuidv4();
     if (el.id) this.addNodeId(node, el);
     if (el.content) this.addNodeContent(node, el);
     if (el.props) this.addProps(node, el);
@@ -97,31 +107,21 @@ export default class {
 
   }
 
-  buildTreeNodes(el) {
-    if (!this.chainedNode) this.chainedNode = this.buildNode(el);
-    if (el.hasOwnProperty('childList')) {
-      el.childList.forEach(child => this.buildTreeNodes(child))
-    }
-    this.chainedNode.appendChild(this.buildNode(el));
-  }
-
   // mount:
   mountNode(el) {
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
       // chaining:
-      // this.chainedNode = this.buildNode(el);
-      this.buildTreeNodes(el);
-      console.log('buildTreeNodes:', this.chainedNode);
+      if (!this.chainedNode) this.chainedNode = this.buildNode(el);
 
-      // el.childList.forEach(child => {
-      //   this.chainedNode.appendChild(this.buildNode(child));
-      //   if (child.hasOwnProperty('childList')) this.mountNode(child);
-      // });
+      el.childList.forEach(child => {
+        this.chainedNode.appendChild(this.buildNode(child));
+        if (child.hasOwnProperty('childList')) this.mountNode(child);
+      });
 
-      // this.appNode.appendChild(this.chainedNode);
+      this.appNode.appendChild(this.chainedNode);
     } else {
       // unchain:
-      this.chainedNode = null;
+      if (!this.chainedNode) this.chainedNode = null;
       this.appNode.appendChild(this.buildNode(el))
     }
   }

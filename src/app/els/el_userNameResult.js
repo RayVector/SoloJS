@@ -15,13 +15,6 @@ export default {
       node: 'span',
       styles,
       content: 'Type user name in the field',
-      childList: [
-        {
-          id: 'userNameResultLabel',
-          node: 'span',
-          content: 'hello'
-        }
-      ]
     }
   ]
 }
