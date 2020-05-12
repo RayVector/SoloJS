@@ -1,7 +1,7 @@
 import SoloJS from "../CORE/SoloJS";
-import el_helloWorld from "./els/el_helloWorld";
-import el_userName from "./els/el_userName";
-import el_userNameResult from "./els/el_userNameResult";
+import el_helloWorld from "./els/el_hello-world";
+import el_userName from "./els/user-name/el_user-name";
+import el_userNameResult from "./els/el_user-name-result";
 
 const SJS = new SoloJS("app");
 

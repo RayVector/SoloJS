@@ -1,16 +1,19 @@
 // parsing HTML from JS engine
 import {v4 as uuidv4} from 'uuid'
 
+
+// Add default el state:
 let state = {
-  id: '',
-  styles: {}
+  styles: {
+    // position: 'absolute'
+  }
 };
 
 
 export default class {
   constructor(nodeId) {
     this.appNode = null;
-    this.chainedNode = null;
+    this.chain = null;
     this.$id = `SJS-${uuidv4()}`;
     this.init(nodeId)
   }
@@ -22,6 +25,22 @@ export default class {
     }
   }
 
+  addElState(el) {
+    if (!el.uid) el.uid = uuidv4();
+    if (this.$id) el.$id = this.$id;
+    if (!el.props) el.props = {};
+    el.props['data-id'] = el.uid;
+    el.props['data-SJS_id'] = this.$id;
+
+    for (let [key, value] of Object.entries(state)) {
+      if (el.hasOwnProperty(key)) {
+        for (let [prop, propValue] of Object.entries(value)) {
+          el[key][prop] = propValue
+        }
+      } else el[key] = value
+    }
+  }
+
   addNodeId(node, el) {
     node.setAttribute("id", el.id);
   }
@@ -30,9 +49,7 @@ export default class {
     node.innerHTML = el.content;
   }
 
-  // TODO: add data-set with id uuid
   addProps(node, el) {
-    node.setAttribute('data-id', el.uid);
     for (let [key, value] of Object.entries(el.props)) {
       node.setAttribute(key, value)
     }
@@ -64,7 +81,7 @@ export default class {
   buildNode(el) {
     let node = document.createElement(el.node || "div");
     // add props:
-    if (!el.uid) el.uid = uuidv4();
+    this.addElState(el);
     if (el.id) this.addNodeId(node, el);
     if (el.content) this.addNodeContent(node, el);
     if (el.props) this.addProps(node, el);
@@ -109,21 +126,16 @@ export default class {
 
   // mount:
   mountNode(el) {
+    this.chain = this.buildNode(el);
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
-      // chaining:
-      if (!this.chainedNode) this.chainedNode = this.buildNode(el);
-
       el.childList.forEach(child => {
-        this.chainedNode.appendChild(this.buildNode(child));
-        if (child.hasOwnProperty('childList')) this.mountNode(child);
+        this.chain.appendChild(this.buildNode(child));
+        if (this.chain) this.appNode.appendChild(this.chain);
       });
-
-      this.appNode.appendChild(this.chainedNode);
     } else {
-      // unchain:
-      if (!this.chainedNode) this.chainedNode = null;
-      this.appNode.appendChild(this.buildNode(el))
+      this.appNode.appendChild(this.chain);
     }
+    this.chain = null;
   }
 
   // main el function:

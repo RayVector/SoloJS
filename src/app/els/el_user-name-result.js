@@ -8,6 +8,9 @@ const styles = {
 export default {
   id: 'userName',
   content: 'User Name:',
+  styles: {
+    top: '50px'
+  },
   node: 'div',
   childList: [
     {
