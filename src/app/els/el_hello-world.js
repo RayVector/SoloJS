@@ -6,7 +6,9 @@ const styles = {
 
 const methods = {
   click: (e) => {
-    e.target.innerHTML = 'Magic JS!';
+    let node = e.target;
+    node.innerHTML = 'Magic JS!';
+    console.log(node.$sjs)
   },
   mouseover: (e) => {
     e.target.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
