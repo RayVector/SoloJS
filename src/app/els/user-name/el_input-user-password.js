@@ -1,5 +1,6 @@
 const styles = {
-  marginLeft: '10px'
+  marginLeft: '10px',
+  left: '200px'
 };
 
 const props = {

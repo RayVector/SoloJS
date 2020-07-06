@@ -2,7 +2,7 @@ import el_inputUserName from './el_input-user-name'
 import el_inputUserPassword from './el_input-user-password'
 
 const styles = {
-  top: '60px'
+  top: '50px'
 };
 
 const childList = [

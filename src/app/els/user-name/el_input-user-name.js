@@ -1,6 +1,5 @@
 const styles = {
   marginLeft: '10px',
-  left: '200px'
 };
 
 const methods = {

@@ -1,7 +1,8 @@
 const styles = {
   marginLeft: '10px',
   fontSize: '15px',
-  color: 'gray'
+  color: 'gray',
+  top: '100px'
 };
 
 

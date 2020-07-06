@@ -1,4 +1,4 @@
-import {v4 as uuidv4} from 'uuid'
+import {v4 as uuidv4} from "uuid";
 
 export default class {
   constructor(nodeId) {
@@ -8,15 +8,15 @@ export default class {
     this.init(nodeId);
     this.state = {
       styles: {
-        // position: 'absolute',
-        // display: 'flex'
+        // position: 'fixed',
+        // display: 'block'
       }
     }
   }
 
   init(nodeId) {
     if (nodeId === String || nodeId !== undefined) {
-      // find place 4 mounting:
+      // find place for mounting:
       this.appNode = document.getElementById(nodeId);
       // this.appNode.setAttribute('style', 'position: relative')
     }
@@ -63,11 +63,8 @@ export default class {
       for (let key in el.methods) {
         if (el.methods.hasOwnProperty(key)) {
           node.addEventListener(key, e => {
-            if (el.bind) {
-              el.methods[key](e, document.getElementById(el.bind))
-            } else {
-              el.methods[key](e)
-            }
+            if (el.bind) el.methods[key](e, document.getElementById(el.bind));
+            else el.methods[key](e)
           })
         }
       }
@@ -144,4 +141,12 @@ export default class {
     this.chain = null;
   }
 
+  // main el function:
+  render(el) {
+    console.log(123, el)
+    this.mountNode(el);
+  }
+
+
 }
+
