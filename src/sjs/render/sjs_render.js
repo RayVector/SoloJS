@@ -18,7 +18,6 @@ export default class {
     if (nodeId === String || nodeId !== undefined) {
       // find place for mounting:
       this.appNode = document.getElementById(nodeId);
-      // this.appNode.setAttribute('style', 'position: relative')
     }
   }
 

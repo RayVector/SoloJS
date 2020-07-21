@@ -1,7 +1,7 @@
 # SJS - SoloJS framework
 #### About:
-SoloJS (SJS) - JS framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
-You just write only JS code, which will be HTML, CSS, JS.
+SoloJS (SJS) - JS UI-framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
+You just write only JS code, which will be HTML, CSS, JS. Inside the framework also exist UI components.
 
 # Ideas
 

@@ -1,4 +1,4 @@
-import sjs from "../../CORE/sjs";
+
 
 const layout = {
   id: '',
@@ -28,10 +28,4 @@ const config = {
   methods
 };
 
-export default class extends sjs {
-  constructor() {
-    super();
-    this.render(config)
-  }
-
-}
+export default
