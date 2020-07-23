@@ -1,11 +1,12 @@
-import {v4 as uuidv4} from "uuid";
+import sjs_core from "../core/sjs_core";
 
-export default class {
-  constructor(nodeId) {
+export default class extends sjs_core {
+  constructor(nodeId, store) {
+    super();
     this.appNode = null;
     this.chain = null;
-    this.$id = `SJS-${uuidv4()}`;
-    this.init(nodeId);
+    this.nodeId = nodeId;
+    this.$store = store;
     this.state = {
       styles: {
         // position: 'fixed',
@@ -14,20 +15,14 @@ export default class {
     }
   }
 
-  init(nodeId) {
-    if (nodeId === String || nodeId !== undefined) {
+  init() {
+    if (this.nodeId === String || this.nodeId !== undefined) {
       // find place for mounting:
-      this.appNode = document.getElementById(nodeId);
+      this.appNode = document.getElementById(this.nodeId);
     }
   }
 
   addElState(el) {
-    // if (!el.uid) ??? = uuidv4();
-    // if (this.$id) el.$id = this.$id;
-    // if (!el.props) el.props = {};
-    // el.props['data-id'] = el.uid;
-    // el.props['data-SJS_id'] = this.$id;
-
     for (let [key, value] of Object.entries(this.state)) {
       if (el.hasOwnProperty(key)) {
         for (let [prop, propValue] of Object.entries(value)) {
@@ -80,12 +75,17 @@ export default class {
 
     // add props to el:
     this.addElState(el);
-    if (!el.uid) node.$id = uuidv4();
     if (el.id) this.addNodeId(node, el);
     if (el.content) this.addNodeContent(node, el);
     if (el.props) this.addProps(node, el);
     if (el.styles) this.addNodeStyles(node, el);
     if (el.methods) if (Object.keys(el.methods).length > 0) this.addNodeMethods(node, el);
+
+    // add unic id:
+    el.$id = this.setUnicId(el);
+
+    // add store:
+    el.$store = this.$store;
 
     if (node) {
       // observe el:
@@ -142,10 +142,14 @@ export default class {
 
   // main el function:
   render(el) {
-    console.log(123, el)
-    this.mountNode(el);
-  }
+    if (this.appNode !== null) {
+      console.log(123, el);
+      this.mountNode(el);
+    } else {
+      throw new Error('Render failed: appNode field is empty')
+    }
 
+  }
 
 }
 

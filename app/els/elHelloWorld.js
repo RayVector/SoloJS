@@ -1,3 +1,4 @@
+import sjs_el from "../../sjs/render/sjs_el";
 
 
 const layout = {
@@ -28,4 +29,4 @@ const config = {
   methods
 };
 
-export default
+export default new sjs_el(config)
