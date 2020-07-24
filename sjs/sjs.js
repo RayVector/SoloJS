@@ -1,5 +1,3 @@
-
-
 export default class {
   constructor({nodeId, store}) {
     this.nodeId = nodeId;
@@ -9,6 +7,5 @@ export default class {
   getInfo() {
     console.log(this)
   }
-
 
 }

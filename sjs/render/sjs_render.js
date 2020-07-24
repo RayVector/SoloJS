@@ -1,8 +1,9 @@
-import sjs_core from "../core/sjs_core";
+import sjs from "../sjs";
 
-export default class extends sjs_core {
-  constructor(nodeId, store) {
-    super();
+
+export default class extends sjs {
+  constructor({nodeId, store}) {
+    super({nodeId, store});
     this.appNode = null;
     this.chain = null;
     this.nodeId = nodeId;
