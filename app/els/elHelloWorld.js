@@ -1,5 +1,3 @@
-import sjs_el from "../../sjs/render/sjs_el";
-
 
 const layout = {
   id: '',
@@ -29,4 +27,4 @@ const config = {
   methods
 };
 
-export default new sjs_el(config)
+export default config

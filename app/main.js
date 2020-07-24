@@ -9,7 +9,5 @@ const sjsNew = new sjs({
 
 sjsNew.getInfo();
 
-sjsNew.render(elHelloWorld);
-sjsNew.render(elHelloWorld);
 
 

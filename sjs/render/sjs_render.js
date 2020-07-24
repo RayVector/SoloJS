@@ -1,9 +1,8 @@
 import sjs from "../sjs";
 
 
-export default class extends sjs {
+export default class {
   constructor({nodeId, store}) {
-    super({nodeId, store});
     this.appNode = null;
     this.chain = null;
     this.nodeId = nodeId;
@@ -16,12 +15,6 @@ export default class extends sjs {
     }
   }
 
-  init() {
-    if (this.nodeId === String || this.nodeId !== undefined) {
-      // find place for mounting:
-      this.appNode = document.getElementById(this.nodeId);
-    }
-  }
 
   addElState(el) {
     for (let [key, value] of Object.entries(this.state)) {
