@@ -1,5 +1,3 @@
-import sjs from "../sjs";
-
 
 export default class {
   constructor({nodeId, store}) {

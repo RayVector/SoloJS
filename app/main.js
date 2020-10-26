@@ -1,13 +1,3 @@
-import sjs from "../sjs/sjs";
-import store from "./store/store";
-import elHelloWorld from "./els/elHelloWorld";
+import Sjs from '../SJS/Sjs'
 
-const sjsNew = new sjs({
-  nodeId: '#app',
-  store,
-});
-
-sjsNew.getInfo();
-
-
-
+new Sjs

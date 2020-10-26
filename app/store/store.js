@@ -1,4 +1,4 @@
-import sjs_store from "../../sjs/store/sjs_store";
+import sjs_store from "../../SJS/store/Sjs_store";
 
 export default new sjs_store({
   state: {

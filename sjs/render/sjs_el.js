@@ -1,7 +1,9 @@
 
 export default class {
-  constructor(el) {
-    this.el = el;
-    console.log(el)
-  }
+  $methods = {};
+  $components = {};
+  $data = {};
+  $render = function () {
+    console.log('rendering...')
+  };
 }
