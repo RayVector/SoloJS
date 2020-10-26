@@ -1,4 +1,4 @@
-import Sjs from '../SJS/Sjs'
+import Sjs from '../sjs/Sjs'
 import store from "./store/store";
 import elApp from '../app/els/elApp'
 

@@ -9,11 +9,8 @@ export default class {
   }
 
   render(nodeId) {
-    if (nodeId === String || nodeId !== undefined) {
-      // find place for mounting:
-      this.appNode = document.getElementById(nodeId)
-    }
+    // mounting
+    if (nodeId === String || nodeId !== undefined) this.appNode = document.getElementById(nodeId)
   }
-
 
 }

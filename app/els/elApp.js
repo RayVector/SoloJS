@@ -1,28 +1,39 @@
-const layout = {
-  id: '',
-  node: 'span',
-  content: 'Click or hover me',
+import elSecondApp from './elSecondApp'
+import Sjs_el from '../../sjs/render/Sjs_el'
+
+export const data = {
+  changedText: 'Magic JS!',
 }
 
-const styles = {
+export const layout = {
+  id: '',
+  node: 'span',
+  content: data.changedText,
+}
+
+export const styles = {
   userSelect: 'none',
   fontSize: '2rem',
   cursor: 'pointer',
 }
 
-const methods = {
+export const elements = {
+  elSecondApp,
+}
+
+export const methods = {
   click: e => {
-    let node = e.target
-    node.innerHTML = 'Magic JS!'
+    e.target.innerHTML = 'Hello world!'
   },
   mouseover: e => {
     e.target.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
   },
 }
 
-
-export default {
-  ...layout,
+export default new Sjs_el({
+  layout,
   styles,
+  elements,
+  data,
   methods,
-}
+})

@@ -3,13 +3,9 @@ export default class {
   constructor({nodeId, store}) {
     this.appNode = null;
     this.chain = null;
-    this.nodeId = nodeId;
     this.$store = store;
     this.state = {
-      styles: {
-        // position: 'fixed',
-        // display: 'block'
-      }
+      styles: {}
     }
   }
 
