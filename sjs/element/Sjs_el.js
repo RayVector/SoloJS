@@ -7,9 +7,9 @@ export default class extends Sjs_render {
   constructor() {
     super()
     this.$name
-    this.layout
-    this.data
-    this.methods
+    this._layout
+    this._data
+    this._methods
   }
 
   get data() {
@@ -17,11 +17,9 @@ export default class extends Sjs_render {
   }
 
   set data(value) {
-    if (value !== this._data) {
-      this._data = value
-      this.rerender(this.prepareElement())
-      console.log('set data', value)
-    }
+    this._data = value
+    this.rerender(this.prepareElement())
+    console.log('set data', value)
   }
 
   get methods() {
@@ -46,10 +44,10 @@ export default class extends Sjs_render {
     const el = this.prepareElement()
     console.log(0, this)
     console.log(1, map)
-    console.log(2,this[key])
-    console.log(3,this[key])
-    console.log(4,this[map[0]])
-    console.log(5,map[1])
+    console.log(2, this[key])
+    console.log(3, this[key])
+    console.log(4, this[map[0]])
+    console.log(5, map[1])
     //this[key] = this[map[0]] = map[1]
     return this.data.changedText
   }
@@ -57,7 +55,7 @@ export default class extends Sjs_render {
   prepareElement() {
     return {
       name: this.$name,
-      data: this.data,
+      data: this.getData,
       methods: this.methods,
       layout: this.layout,
     }
