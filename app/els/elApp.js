@@ -1,39 +1,41 @@
-import elSecondApp from './elSecondApp'
-import Sjs_el from '../../sjs/render/Sjs_el'
+import Sjs_el from '../../sjs/element/Sjs_el'
 
-export const data = {
-  changedText: 'Magic JS!',
+const elApp = new Sjs_el()
+
+elApp.$name = 'elApp'
+
+elApp.data = {
+  changedText: 'Hello world!',
+  color: '#000000',
 }
 
-export const layout = {
-  id: '',
-  node: 'span',
-  content: data.changedText,
+elApp.layout = {
+  id: 'elApp',
+  node: 'div',
+  content: elApp.rel('content', ['data', 'changedText']),
 }
 
-export const styles = {
-  userSelect: 'none',
-  fontSize: '2rem',
-  cursor: 'pointer',
-}
-
-export const elements = {
-  elSecondApp,
-}
-
-export const methods = {
-  click: e => {
-    e.target.innerHTML = 'Hello world!'
+elApp.methods = {
+  changeText: {
+    func: e => {
+      elApp.data = {
+        changedText: 'Magic JS!',
+      }
+    },
+    type: 'click',
   },
-  mouseover: e => {
-    e.target.style.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
-  },
+  // changeColor: {
+  //   func: e => {
+  //     data.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
+  //   },
+  //   type: 'mouseover',
+  // },
 }
 
-export default new Sjs_el({
-  layout,
-  styles,
-  elements,
-  data,
-  methods,
-})
+// elApp.styles = {
+//   userSelect: 'none',
+//   fontSize: '2rem',
+//   cursor: 'pointer',
+// }
+
+export default elApp.create()

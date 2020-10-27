@@ -15,6 +15,8 @@ how to leave HTML and CSS?
 
 #Todo:
 
+- Try refactor to only classes;
+- Try refactor to only functions;
 - MAIN: Leave HTML and CSS or combine in one data;
 - (DONE) Add child elements to elements;
 - Refactor all components to Classes;
