@@ -1,17 +1,13 @@
 /**
  * DOM manipulator engine
  */
-export default class {
-  #appNode = null
-  #chain = null
-  #state = {}
 
+export default {
+  appNode: null,
+  chain: null,
+  state: {},
 
-  constructor() {
-
-  }
-
-  addElState(el) {
+  addElState: function(el) {
     for (let [key, value] of Object.entries(this.state)) {
       if (el.hasOwnProperty(key)) {
         for (let [prop, propValue] of Object.entries(value)) {
@@ -19,33 +15,35 @@ export default class {
         }
       } else el[key] = value
     }
-  }
+  },
 
-  useLayout(node, layout) {
+  useLayout: function(node, layout) {
     const { id, content } = layout
     node.setAttribute('id', id)
     node.innerHTML = content
-  }
+  },
 
-  addProps(node, el) {
+  addProps: function(node, el) {
     for (let [key, value] of Object.entries(el.props)) {
       node.setAttribute(key, value)
     }
-  }
+  },
 
-  addNodeStyles(node, el) {
+  addNodeStyles: function(node, el) {
     for (let [key, value] of Object.entries(el.styles)) {
       node.style[key] = value
     }
-  }
+  },
 
-  rerender(el) {
-    if (!el.name) { return }
+  rerender: function(el) {
+    if (!el.name) {
+      return
+    }
     const oldNode = document.getElementById(el.name)
     if (oldNode) oldNode.replaceWith(this.buildNode(el))
-  }
+  },
 
-  useMethods(node, methods) {
+  useMethods: function(node, methods) {
     document.addEventListener('DOMContentLoaded', function(event) {
       for (const [key, value] of Object.entries(methods)) {
         if (methods.hasOwnProperty(key)) {
@@ -57,9 +55,9 @@ export default class {
 
     document.removeEventListener('DOMContentLoaded', () => {
     })
-  }
+  },
 
-  setWatcher(node) {
+  setWatcher: function(node) {
     // observe el:
     const config = {
       childList: true,
@@ -93,10 +91,10 @@ export default class {
 
     const observer = new MutationObserver(callback)
     observer.observe(node, config)
-  }
+  },
 
   // create node:
-  buildNode(el) {
+  buildNode: function(el) {
     //console.log('buildNode:', el)
     if (!el) return false
 
@@ -131,9 +129,9 @@ export default class {
       return null
     }
 
-  }
+  },
 
-  mountNode(el, node) {
+  mountNode: function(el, node) {
     // accumulating variable:
     this.chain = node ? node : this.buildNode(el)
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
@@ -147,13 +145,13 @@ export default class {
     }
     // reset accumulating:
     this.chain = null
-  }
+  },
 
   // main el function:
-  render(root, appNode) {
-    this.appNode = appNode
+  render: function(root, appNode) {
+    appNode = appNode
     //console.log('mountNode', { root, appNode })
     this.mountNode(root)
-  }
+  },
 }
 

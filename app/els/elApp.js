@@ -1,5 +1,5 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
-
+// new Proxy(target, {proxy})
 const elApp = new Sjs_el()
 
 elApp.$name = 'elApp'
@@ -12,7 +12,7 @@ elApp.data = {
 elApp.layout = {
   id: 'elApp',
   node: 'div',
-  content: elApp.rel('content', ['data', 'changedText']),
+  content: elApp.rel(['data', 'changedText']),
 }
 
 elApp.methods = {

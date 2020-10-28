@@ -18,7 +18,7 @@ export default class extends Sjs_render {
 
   set data(value) {
     this._data = value
-    this.rerender(this.prepareElement())
+    this.rerender(this.createElement())
     console.log('set data', value)
   }
 
@@ -40,19 +40,12 @@ export default class extends Sjs_render {
     console.log('set layout', value)
   }
 
-  rel(key, map) {
-    const el = this.prepareElement()
-    console.log(0, this)
-    console.log(1, map)
-    console.log(2, this[key])
-    console.log(3, this[key])
-    console.log(4, this[map[0]])
-    console.log(5, map[1])
-    //this[key] = this[map[0]] = map[1]
-    return this.data.changedText
+  rel(map) {
+    return map
   }
 
-  prepareElement() {
+  createElement() {
+    console.log('Layout:', this.layout)
     return {
       name: this.$name,
       data: this.getData,
@@ -61,8 +54,12 @@ export default class extends Sjs_render {
     }
   }
 
+  /**
+   * 1
+   * @returns {{layout: *, data: (format: string) => string, methods: *, name: string}}
+   */
   create() {
-    return this.prepareElement()
+    return this.createElement()
   }
 
 
