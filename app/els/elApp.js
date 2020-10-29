@@ -1,41 +1,38 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
-// new Proxy(target, {proxy})
-const elApp = new Sjs_el()
 
-elApp.$name = 'elApp'
+const name = 'elApp'
 
-elApp.data = {
+const data = {
   changedText: 'Hello world!',
   color: '#000000',
 }
 
-elApp.layout = {
+const layout = {
   id: 'elApp',
   node: 'div',
-  content: elApp.rel(['data', 'changedText']),
-}
-
-elApp.methods = {
-  changeText: {
-    func: e => {
-      elApp.data = {
-        changedText: 'Magic JS!',
-      }
+  content: () => ['data', 'changedText'],
+  methods: [
+    {
+      name: 'changeText',
+      type: 'click',
     },
-    type: 'click',
-  },
-  // changeColor: {
-  //   func: e => {
-  //     data.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
-  //   },
-  //   type: 'mouseover',
-  // },
+  ],
 }
 
-// elApp.styles = {
-//   userSelect: 'none',
-//   fontSize: '2rem',
-//   cursor: 'pointer',
-// }
+const methods = {
+  changeText: () => {
+    return {
+      changedText: 'Magic JS!',
+    }
+  },
+}
 
-export default elApp.create()
+const el = {
+  name,
+  data,
+  layout,
+  methods,
+}
+
+
+export default new Sjs_el(el).create()

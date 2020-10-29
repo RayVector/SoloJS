@@ -2,12 +2,12 @@
  * DOM manipulator engine
  */
 
-export default {
-  appNode: null,
-  chain: null,
-  state: {},
+export default class {
+  appNode = null
+  chain = null
+  state = {}
 
-  addElState: function(el) {
+  addElState(el) {
     for (let [key, value] of Object.entries(this.state)) {
       if (el.hasOwnProperty(key)) {
         for (let [prop, propValue] of Object.entries(value)) {
@@ -15,35 +15,35 @@ export default {
         }
       } else el[key] = value
     }
-  },
+  }
 
-  useLayout: function(node, layout) {
+  useLayout(node, layout) {
     const { id, content } = layout
     node.setAttribute('id', id)
     node.innerHTML = content
-  },
+  }
 
-  addProps: function(node, el) {
+  addProps(node, el) {
     for (let [key, value] of Object.entries(el.props)) {
       node.setAttribute(key, value)
     }
-  },
+  }
 
-  addNodeStyles: function(node, el) {
+  addNodeStyles(node, el) {
     for (let [key, value] of Object.entries(el.styles)) {
       node.style[key] = value
     }
-  },
+  }
 
-  rerender: function(el) {
+  rerender(el) {
     if (!el.name) {
       return
     }
     const oldNode = document.getElementById(el.name)
     if (oldNode) oldNode.replaceWith(this.buildNode(el))
-  },
+  }
 
-  useMethods: function(node, methods) {
+  useMethods(node, methods) {
     document.addEventListener('DOMContentLoaded', function(event) {
       for (const [key, value] of Object.entries(methods)) {
         if (methods.hasOwnProperty(key)) {
@@ -55,9 +55,9 @@ export default {
 
     document.removeEventListener('DOMContentLoaded', () => {
     })
-  },
+  }
 
-  setWatcher: function(node) {
+  setWatcher(node) {
     // observe el:
     const config = {
       childList: true,
@@ -91,10 +91,10 @@ export default {
 
     const observer = new MutationObserver(callback)
     observer.observe(node, config)
-  },
+  }
 
   // create node:
-  buildNode: function(el) {
+  buildNode(el) {
     //console.log('buildNode:', el)
     if (!el) return false
 
@@ -123,15 +123,13 @@ export default {
       /**
        * watcher
        */
-      this.setWatcher(node)
+      //this.setWatcher(node)
       return node
-    } else {
-      return null
-    }
+    } else return null
 
-  },
+  }
 
-  mountNode: function(el, node) {
+  mountNode(el, node) {
     // accumulating variable:
     this.chain = node ? node : this.buildNode(el)
     if (el.hasOwnProperty('childList') && el.childList.length > 0) {
@@ -145,13 +143,12 @@ export default {
     }
     // reset accumulating:
     this.chain = null
-  },
+  }
 
   // main el function:
-  render: function(root, appNode) {
-    appNode = appNode
-    //console.log('mountNode', { root, appNode })
+  render(appNode, root) {
+    this.appNode = appNode
     this.mountNode(root)
-  },
+  }
 }
 

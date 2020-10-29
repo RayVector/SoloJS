@@ -1,10 +1,4 @@
 import Sjs from '../sjs/Sjs'
-import store from './store/store'
-import elApp from '../app/els/elApp'
+import App from './els/App'
 
-console.log(elApp)
-//
-// new Sjs({
-//   store,
-//   root: elApp,
-// }).init('app')
+Sjs.init('app', App)
