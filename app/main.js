@@ -1,10 +1,5 @@
 import Sjs from '../sjs/Sjs'
-import store from "./store/store";
-import elApp from '../app/els/elApp'
+import MainApp from './els/MainApp'
+import SecondApp from './els/SecondApp'
 
-new Sjs({
-  store,
-  root: elApp
-}).render('#app');
-
-//sjsNew.getInfo();
+new Sjs().init('app', [MainApp, SecondApp])

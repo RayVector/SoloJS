@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './app/main.js',
@@ -10,4 +11,16 @@ module.exports = {
   devServer: {
     contentBase: './dist',
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+      }
+    ]
+  },
+  stats: {
+    colors: true
+  },
+  devtool: 'source-map'
 };
