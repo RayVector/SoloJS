@@ -1,11 +1,10 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
+import ThirdApp from './MainApp/ThirdApp'
 
 class MainApp extends Sjs_el {
   constructor() {
     super()
   }
-
-  name = 'MainApp'
 
   data = {
     text: 'Hello world!',
@@ -27,6 +26,9 @@ class MainApp extends Sjs_el {
         type: 'click',
         name: 'changeText',
       },
+    ],
+    childList: [
+      ThirdApp,
     ],
   }
 

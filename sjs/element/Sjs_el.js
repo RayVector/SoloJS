@@ -4,7 +4,7 @@
 import Sjs_render from '../render/Sjs_render'
 
 export default class extends Sjs_render {
-  name = ''
+  name = this.constructor.name
   data = {}
   template = {
     id: '',

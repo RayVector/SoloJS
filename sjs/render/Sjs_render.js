@@ -44,22 +44,37 @@ export default class {
   }
 
   buildNode(el) {
+    console.log(el)
     if (!el) throw new Error('Element is required')
     // create node
     let node = document.createElement(el.template.node || 'div')
     if (el.template) this.useTemplate(node, el)
     if (el.styles) this.useStyles(node, el)
 
+
     if (typeof node === 'object') return node
     return null
   }
 
-  mountNode(parent, el) {
-    parent.appendChild(el)
+  mountNode(parentNode, el) {
+    console.log({ parentNode, el })
+    if (el.template.childList && el.template.childList.length) {
+      console.log('parent', el)
+      el.template.childList.forEach(child => {
+        console.log('child', { el, child })
+      })
+    }
+    parentNode.appendChild(this.buildNode(el))
   }
 
-  render(parent, els) {
-    els.forEach(el => this.mountNode(parent, this.buildNode(el)))
+  mountNodes(parentNode, els) {
+    els.forEach(el => {
+      this.mountNode(parentNode, el)
+    })
+  }
+
+  render(parentNode, els) {
+    this.mountNodes(parentNode, els)
   }
 }
 

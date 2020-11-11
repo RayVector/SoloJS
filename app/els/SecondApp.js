@@ -5,8 +5,6 @@ class SecondApp extends Sjs_el {
     super()
   }
 
-  name = 'SecondApp'
-
   template = {
     node: 'p',
     content: 'SecondApp',

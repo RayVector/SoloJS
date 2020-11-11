@@ -17,9 +17,10 @@ ___
 
 #Todo:
 
+-- Add method getProps to Sjs_el; <br>
 -- 3D template engine (not flat, child, siblings - neighbors); <br>
     -- kids; <br>
-    -- neighbors; <br>
+    ++ neighbors; <br>
 -- State manager; <br>
 -- Add more elements functionality (img, forms, inputs, etc); <br>
 -- Elements functionality - input properties; <br>
