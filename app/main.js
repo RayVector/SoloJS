@@ -1,4 +1,5 @@
 import Sjs from '../sjs/Sjs'
-import App from './els/App'
+import MainApp from './els/MainApp'
+import SecondApp from './els/SecondApp'
 
-Sjs.init('app', App)
+new Sjs().init('app', [MainApp, SecondApp])

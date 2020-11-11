@@ -1,38 +1,63 @@
 /**
  * Element engine
  */
+import Sjs_render from '../render/Sjs_render'
 
-export default class {
-  name = null
-  layout = null
-  methods = null
+export default class extends Sjs_render {
+  name = ''
+  data = {}
+  template = {
+    id: '',
+    node: '',
+    content: '',
+    methods: [],
+  }
+  styles = {}
+  methods = {}
+  isPrepared = false
 
   constructor() {
-
+    super()
   }
 
-  get data() {
-    return this._data
-  }
-
-  set data(changedData) {
-    this._data = changedData
-    console.log('data:', changedData)
-  }
-
+  // todo: create field validation (no similar fields)
   changeData(newData) {
-    Object.assign(this.data, newData)
+    for (const [key, value] of Object.entries(newData)) {
+      if (!this.data[key]) {
+        throw new Error(`Not found "${key}" in "data"`)
+      }
+
+      if (this[key] !== value) this[key] = value
+    }
+
+    return true
   }
 
-  bind(callback) {
-    return this.data[callback()]
+  prepare() {
+    Object.keys(this.data).forEach(key => {
+      Object.defineProperty(this, key, {
+        get() {
+          return this['_' + key]
+        },
+
+        set(value) {
+          this['_' + key] = value
+          if (this.isPrepared) this.rerender(this)
+        },
+      })
+    })
+
   }
 
   create() {
-    this.methods.changeText()
-    console.log('this:', this)
+    this.prepare()
+    this.changeData(this.data)
+
+    /**
+     * created lifecycle part
+     */
+    this.isPrepared = true
     return this
   }
-
 
 }
