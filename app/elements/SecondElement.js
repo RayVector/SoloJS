@@ -5,9 +5,14 @@ class SecondElement extends Sjs_el {
     super()
   }
 
+  styles = {
+    fontSize: '25px',
+    color: 'darkblue'
+  }
+
   template = {
-    node: 'p',
-    content: 'SecondApp',
+    node: 'div',
+    content: 'I am neighbor!',
   }
 
 }

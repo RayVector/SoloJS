@@ -10,7 +10,7 @@ class MainElement extends Sjs_el {
     text: 'Hello world!',
     newText: 'I am solo js!',
     color: 'green',
-    font: '2rem',
+    font: '35px',
   }
 
   styles = {
