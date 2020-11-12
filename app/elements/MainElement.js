@@ -24,16 +24,17 @@ class MainElement extends Sjs_el {
     id: 'MainApp',
     node: 'div',
     content: () => this.text,
-    methods: [
+    events: [
       {
         type: 'click',
         name: 'changeText',
       },
     ],
-    childList: [
-      ThirdApp,
-    ],
   }
+
+  childList = [
+    ThirdApp,
+  ]
 
   methods = {
     changeText: () => {

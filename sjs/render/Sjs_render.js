@@ -29,9 +29,9 @@ export default class {
     node.innerText = new Fields().handle(content)
 
     //methods (events)
-    if (template.methods && template.methods.length) {
+    if (template.events && template.events.length) {
       document.addEventListener('DOMContentLoaded', function(event) {
-        template.methods.forEach(method => {
+        template.events.forEach(method => {
           const event = new Events().handle(method.type)
           node.addEventListener(event, methods[method.name])
         })
@@ -79,8 +79,8 @@ export default class {
     }
 
     // recursion!
-    if (el.template.childList && el.template.childList.length) {
-      el.template.childList.forEach(child => {
+    if (el.childList && el.childList.length) {
+      el.childList.forEach(child => {
         rootNode.appendChild(this.elementNodeReducer(child))
       })
     }
@@ -95,7 +95,7 @@ export default class {
   mountInit(parentNode, els) {
     els.forEach(el => {
       // children's
-      if (el.template.childList && el.template.childList.length) {
+      if (el.childList && el.childList.length) {
         parentNode.appendChild(this.elementNodeReducer(el))
       } else {
         // no children's

@@ -10,8 +10,9 @@ export default class extends Sjs_render {
     id: '',
     node: '',
     content: '',
-    methods: [],
+    events: [],
   }
+  childList = []
   styles = {}
   methods = {}
   isPrepared = false

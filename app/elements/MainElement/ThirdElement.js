@@ -14,10 +14,11 @@ class ThirdElement extends Sjs_el {
   template = {
     node: 'div',
     content: 'Im a child!',
-    childList: [
-      FourthElement,
-    ],
   }
+
+  childList = [
+    FourthElement,
+  ]
 
 }
 
