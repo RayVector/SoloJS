@@ -1,6 +1,6 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
 
-class SecondApp extends Sjs_el {
+class SecondElement extends Sjs_el {
   constructor() {
     super()
   }
@@ -13,4 +13,4 @@ class SecondApp extends Sjs_el {
 }
 
 
-export default new SecondApp().create()
+export default new SecondElement().create()

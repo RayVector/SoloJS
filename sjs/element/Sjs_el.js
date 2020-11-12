@@ -40,6 +40,7 @@ export default class extends Sjs_render {
           return this['_' + key]
         },
 
+        // add call stack for render to rerender all pack, no by one property
         set(value) {
           this['_' + key] = value
           if (this.isPrepared) this.rerender(this)
