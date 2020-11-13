@@ -15,7 +15,7 @@ ___
 
 ___
 
-#Todo:
+#Todo: <br>
 
 -- Props to child (add method getProps to Sjs_el); <br>
 -- Callback to parent from element; <br>
@@ -29,7 +29,8 @@ ___
 
 ___
 
-#Done:
+#Done: <br>
+
 ++ 3D template engine (not flat, child, siblings - neighbors); <br>
     ++ kids; <br>
     ++ neighbors; <br>
@@ -40,7 +41,7 @@ ___
 
 ___
 
-#Bugs:
+#Bugs: <br>
 
 -- Sjs_el, setter, multiple fields change results in multiple rerenders; <br>
 -- Changing similar (reusable, duplicated) components not supported; <br>
