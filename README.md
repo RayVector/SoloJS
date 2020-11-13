@@ -1,4 +1,5 @@
-# SJS - SoloJS framework
+# SJS - SoloJS framework (UNDER DEVELOPMENT)
+
 #### About:
 SoloJS (SJS) - JS modular UI-framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
 You just write only JS code, which will be HTML, CSS, JS. Inside the framework also exist UI components.
@@ -19,13 +20,15 @@ ___
 
 -- Props to child (add method getProps to Sjs_el); <br>
 -- Callback to parent from element; <br>
--- Reuseable components; <br>
+-- Reuseable components (Change DOM finding system, render engine to components hashing, finding by hash); <br>
 -- State manager; <br>
 -- Add more elements functionality (img, forms, inputs, etc); <br>
 -- Elements functionality - input properties; <br>
 -- Errors handlers; <br>
 -- Try refactor to only functions; <br>
--- Write API documentation; <br>
+-- Write simple API documentation (for development study); <br>
+-- Virtual DOM (optimization); <br>
+-- Write big API documentation (for production study); <br>
 
 ___
 
@@ -43,5 +46,5 @@ ___
 
 #Bugs: <br>
 
--- Sjs_el, setter, multiple fields change results in multiple rerenders; <br>
--- Changing similar (reusable, duplicated) components not supported; <br>
+-- Sjs_el, setter, multiple fields change results in multiple rerenders (Add mutation callstack); <br>
+-- Changing similar (reusable, duplicated) components not supported (Change DOM finding system, render engine to components hashing, finding by hash); <br>
