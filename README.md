@@ -16,35 +16,5 @@ ___
 
 ___
 
-#Todo: <br>
-
--- Props to child (add method getProps to Sjs_el); <br>
--- Callback to parent from element; <br>
--- Reuseable components (Change DOM finding system, render engine to components hashing, finding by hash); <br>
--- State manager; <br>
--- Add more elements functionality (img, forms, inputs, etc); <br>
--- Elements functionality - input properties; <br>
--- Errors handlers; <br>
--- Try refactor to only functions; <br>
--- Write simple API documentation (for development study); <br>
--- Virtual DOM (optimization); <br>
--- Write big API documentation (for production study); <br>
-
-___
-
-#Done: <br>
-
-++ 3D template engine (not flat, child, siblings - neighbors); <br>
-    ++ kids; <br>
-    ++ neighbors; <br>
-++ Refactor all components to Classes; <br>
-++ MAIN: Leave HTML and CSS or combine in one data; <br>
-++ Try refactor to only classes; <br>
-++ Advanced selectors. Id or what? Crypt id/node? Use 'data-' html - NAME <br>
-
-___
-
-#Bugs: <br>
-
--- Sjs_el, setter, multiple fields change results in multiple rerenders (Add mutation callstack); <br>
--- Changing similar (reusable, duplicated) components not supported (Change DOM finding system, render engine to components hashing, finding by hash); <br>
+#Project Plan: 
+https://github.com/users/RayVector/projects/1?add_cards_query=is%3Aopen
