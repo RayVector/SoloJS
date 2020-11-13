@@ -1,28 +1,30 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
+import ThirdApp from './MainElement/ThirdElement'
 
-class MainApp extends Sjs_el {
+class MainElement extends Sjs_el {
   constructor() {
     super()
   }
 
-  name = 'MainApp'
-
   data = {
     text: 'Hello world!',
+    newText: 'I am solo js!',
     color: 'green',
-    font: '2rem',
+    font: '35px',
   }
 
   styles = {
     color: () => this.color,
     fontSize: () => this.font,
+    display: 'flex',
+    flexDirection: 'column',
   }
 
   template = {
     id: 'MainApp',
     node: 'div',
     content: () => this.text,
-    methods: [
+    events: [
       {
         type: 'click',
         name: 'changeText',
@@ -30,16 +32,18 @@ class MainApp extends Sjs_el {
     ],
   }
 
+  childList = [
+    ThirdApp,
+  ]
+
   methods = {
     changeText: () => {
       this.changeData({
-        text: 'Magic JS!',
-        color: 'blue',
-        font: '5rem',
+        text: this.newText,
       })
     },
   }
 
 }
 
-export default new MainApp().create()
+export default new MainElement().create()

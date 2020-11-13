@@ -6,12 +6,18 @@ import Fields from './handlers/Fields'
 
 export default class {
 
+  /**
+   * void
+   */
   useStyles(node, el) {
     for (let [key, value] of Object.entries(el.styles)) {
       node.style[key] = new Fields().handle(value)
     }
   }
 
+  /**
+   * void
+   */
   useTemplate(node, el) {
     // template
     const { template, methods, name } = el
@@ -20,13 +26,12 @@ export default class {
     const { id, content } = template
     if (id) node.setAttribute('id', id)
     node.setAttribute('name', name)
-    node.innerHTML = new Fields().handle(content)
+    node.innerText = new Fields().handle(content)
 
-
-    //methods
-    if (template.methods && template.methods.length) {
+    //methods (events)
+    if (template.events && template.events.length) {
       document.addEventListener('DOMContentLoaded', function(event) {
-        template.methods.forEach(method => {
+        template.events.forEach(method => {
           const event = new Events().handle(method.type)
           node.addEventListener(event, methods[method.name])
         })
@@ -37,12 +42,18 @@ export default class {
     }
   }
 
+  /**
+   * void
+   */
   rerender(el) {
     if (!el.name) throw new Error('Element Name is required')
     const oldNode = document.querySelector(`[name=${el.name}]`)
-    if (oldNode) oldNode.replaceWith(this.buildNode(el))
+    if (oldNode) oldNode.replaceWith(this.elementNodeReducer(el))
   }
 
+  /**
+   * @returns {HTMLElement}
+   */
   buildNode(el) {
     if (!el) throw new Error('Element is required')
     // create node
@@ -50,16 +61,55 @@ export default class {
     if (el.template) this.useTemplate(node, el)
     if (el.styles) this.useStyles(node, el)
 
+
     if (typeof node === 'object') return node
     return null
   }
 
-  mountNode(parent, el) {
-    parent.appendChild(el)
+  /**
+   * @returns {HTMLElement}
+   */
+  elementNodeReducer(el) {
+    // accumulator
+    let rootNode = null
+
+    // first acc
+    if (!rootNode) {
+      rootNode = this.buildNode(el)
+    }
+
+    // recursion!
+    if (el.childList && el.childList.length) {
+      el.childList.forEach(child => {
+        rootNode.appendChild(this.elementNodeReducer(child))
+      })
+    }
+
+    // node
+    return rootNode
   }
 
-  render(parent, els) {
-    els.forEach(el => this.mountNode(parent, this.buildNode(el)))
+  /**
+   * void
+   */
+  mountInit(parentNode, els) {
+    els.forEach(el => {
+      // children's
+      if (el.childList && el.childList.length) {
+        parentNode.appendChild(this.elementNodeReducer(el))
+      } else {
+        // no children's
+        const builtChild = this.buildNode(el)
+        parentNode.appendChild(builtChild)
+      }
+    })
+  }
+
+  /**
+   * void
+   */
+  render(parentNode, els) {
+    this.mountInit(parentNode, els)
   }
 }
 

@@ -4,14 +4,15 @@
 import Sjs_render from '../render/Sjs_render'
 
 export default class extends Sjs_render {
-  name = ''
+  name = this.constructor.name
   data = {}
   template = {
     id: '',
     node: '',
     content: '',
-    methods: [],
+    events: [],
   }
+  childList = []
   styles = {}
   methods = {}
   isPrepared = false
@@ -40,6 +41,7 @@ export default class extends Sjs_render {
           return this['_' + key]
         },
 
+        // add call stack for render to rerender all pack, no by one property
         set(value) {
           this['_' + key] = value
           if (this.isPrepared) this.rerender(this)
