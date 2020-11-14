@@ -16,10 +16,11 @@ ___
 
 1) Component state:
 ```javascript
-data = {
-    text: 'Hello world!',
-    newText: 'I am solo js!',
+  data = {
+    text: 'Click me',
+    newText: 'Hey, I am SJS!',
     color: 'green',
+    childProp: 'Child prop!', // prop
     font: '35px',
   }
 ```
@@ -43,10 +44,11 @@ template = {
 
 3) Component methods:
 ```javascript
-methods = {
-    changeText: () => {
+  methods = {
+    changeText: () => { 
       this.changeData({ // dynamic method for changing state
         text: this.newText,
+        childProp: 'Hello world', // update component state + child prop
       })
     },
   }
@@ -65,12 +67,35 @@ styles = {
 4) component children:
 ```javascript
 childList = [
-    ThirdApp,
+    {
+      component: ThirdApp,
+      props: {
+        msg: () => this.childProp,
+      },
+    },
   ]
-
 ```
 
-5) SJS Component total view:
+Simple:
+```javascript
+childList = [
+    ThirdApp,
+  ]
+```
+
+5) Component lifecycles:
+```javascript
+created() {
+    console.log('created!')
+  }
+
+  mounted() {
+    console.log('mounted!')
+  }
+```
+
+
+0) SJS Component total view:
 
 ```javascript
 import Sjs_el from '../../sjs/element/Sjs_el'
@@ -82,9 +107,10 @@ class MainElement extends Sjs_el {
   }
 
   data = {
-    text: 'Hello world!',
-    newText: 'I am solo js!',
+    text: 'Click me',
+    newText: 'Hey, I am SJS!',
     color: 'green',
+    childProp: 'Child prop!', // prop
     font: '35px',
   }
 
@@ -103,21 +129,38 @@ class MainElement extends Sjs_el {
       {
         type: 'click',
         name: 'changeText',
+        isSelf: true,
       },
     ],
   }
 
   childList = [
-    ThirdApp,
+    {
+      component: ThirdApp,
+      props: {
+        msg: () => this.childProp,
+      },
+    },
   ]
 
   methods = {
     changeText: () => {
       this.changeData({
         text: this.newText,
+        childProp: 'Hello world',
       })
     },
   }
+
+  created() {
+    console.log('created!')
+  }
+
+  mounted() {
+    console.log('mounted!')
+  }
+
+  
 
 }
 
