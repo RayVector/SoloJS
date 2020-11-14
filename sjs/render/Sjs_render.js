@@ -31,9 +31,16 @@ export default class {
     //methods (events)
     if (template.events && template.events.length) {
       document.addEventListener('DOMContentLoaded', function(event) {
-        template.events.forEach(method => {
-          const event = new Events().handle(method.type)
-          node.addEventListener(event, methods[method.name])
+        template.events.forEach(event => {
+          const handledEvent = new Events().handle(event.type)
+          node.addEventListener(handledEvent, e => {
+            // if isSelf
+            if (event.isSelf) {
+              if (node === e.target) methods[event.name](e)
+            } else {
+              methods[event.name](e)
+            }
+          })
         })
       })
 

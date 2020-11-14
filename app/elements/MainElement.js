@@ -28,6 +28,7 @@ class MainElement extends Sjs_el {
       {
         type: 'click',
         name: 'changeText',
+        isSelf: true,
       },
     ],
   }
