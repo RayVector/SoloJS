@@ -12,7 +12,9 @@ ___
 
 ___
 
-## Code:
+## General overview:
+
+(MainElement.js)
 
 1) Component state:
 ```javascript
@@ -162,4 +164,17 @@ class MainElement extends Sjs_el {
 }
 
 export default new MainElement().create()
+```
+___
+
+## Begin:
+
+(main.js)
+
+```
+import Sjs from '../sjs/Sjs'
+import MainElement from './elements/MainElement'
+import SecondElement from './elements/SecondElement'
+
+new Sjs().init('app', [MainElement, SecondElement]) // array of neighbors
 ```
