@@ -12,7 +12,7 @@ class SecondElement extends Sjs_el {
 
   template = {
     node: 'div',
-    content: 'I am neighbor!',
+    content: 'I am a neighbor',
   }
 
 }

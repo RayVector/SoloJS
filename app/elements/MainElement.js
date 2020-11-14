@@ -7,8 +7,8 @@ class MainElement extends Sjs_el {
   }
 
   data = {
-    text: 'Hello world!',
-    newText: 'I am solo js!',
+    text: 'Click me',
+    newText: 'Hey, I am SJS!',
     color: 'green',
     font: '35px',
   }
