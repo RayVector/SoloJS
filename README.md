@@ -1,5 +1,7 @@
 # SJS - SoloJS framework (under development)
 
+![alt text](https://github.com/rayvector/SoloJS/edit/master/SoloJS.png?raw=true)
+
 #### About:
 SoloJS (SJS) - JS modular UI-framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
 You just write only JS code, which will be HTML, CSS, JS. Inside the framework also exist UI components.
