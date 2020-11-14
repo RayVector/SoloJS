@@ -2,7 +2,7 @@
 
 <br/>
 <p align="center">
-  <img width="200" src="https://github.com/RayVector/SoloJS/blob/master/SoloJS.png">
+  <img width="200" src="https://github.com/RayVector/SoloJS/blob/master/SoloJS Logo.png">
 </p>
 <br/>
 
