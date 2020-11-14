@@ -27,7 +27,7 @@ ___
 
 2) Template engine:
 ```javascript
-template = {
+  template = {
     id: 'MainApp',
     node: 'div',
     content: () => this.text, // dynamic binding to state
@@ -56,7 +56,7 @@ template = {
 
 3) Component styles:
 ```javascript
-styles = {
+  styles = {
     color: () => this.color, // dynamically binding styles to state
     fontSize: () => this.font, // too ^
     display: 'flex',
@@ -64,9 +64,9 @@ styles = {
   }
 ```
 
-4) component children:
+4) Component children:
 ```javascript
-childList = [
+  childList = [
     {
       component: ThirdApp,
       props: {
@@ -74,18 +74,15 @@ childList = [
       },
     },
   ]
-```
-
-Simple:
-```javascript
-childList = [
+// or simple way:
+  childList = [
     ThirdApp,
   ]
 ```
 
 5) Component lifecycles:
 ```javascript
-created() {
+  created() {
     console.log('created!')
   }
 
