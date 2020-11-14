@@ -33,7 +33,8 @@ template = {
     events: [
       {
         type: 'click', // HTML DOM Event
-        name: 'changeText', // which method to use? State his name.
+        name: 'changeText', // which method to use? State his name
+        isSelf: true, // do event just for this node
       },
     ],
   }
