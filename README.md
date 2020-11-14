@@ -1,4 +1,4 @@
-# SJS - SoloJS framework (UNDER DEVELOPMENT)
+# SJS - SoloJS framework (under development)
 
 #### About:
 SoloJS (SJS) - JS modular UI-framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
