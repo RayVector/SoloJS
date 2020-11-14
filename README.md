@@ -1,8 +1,12 @@
-# SJS - SoloJS framework (under development)
+
 
 <br/>
-<img width="100" src="https://github.com/RayVector/SoloJS/blob/master/SoloJS.png">
+<p align="center">
+  <img width="200" src="https://github.com/RayVector/SoloJS/blob/master/SoloJS.png">
+</p>
 <br/>
+
+# SJS - SoloJS framework (under development)
 
 
 #### About:
