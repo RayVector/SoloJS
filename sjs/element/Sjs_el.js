@@ -2,6 +2,7 @@
  * Element engine
  */
 import Sjs_render from '../render/Sjs_render'
+import Fields from '../render/handlers/Fields'
 
 export default class extends Sjs_render {
   name = this.constructor.name
@@ -15,10 +16,23 @@ export default class extends Sjs_render {
   childList = []
   styles = {}
   methods = {}
+  props = {}
   isPrepared = false
+
+  mounted() {
+    return true
+  }
+
+  created() {
+    return true
+  }
 
   constructor() {
     super()
+  }
+
+  getProps(props = {}) {
+    this.props = props
   }
 
   // todo: create field validation (no similar fields)
@@ -44,12 +58,25 @@ export default class extends Sjs_render {
         // add call stack for render to rerender all pack, no by one property
         set(value) {
           this['_' + key] = value
+          this.giveProps()
           if (this.isPrepared) this.rerender(this)
         },
       })
     })
-
   }
+
+  giveProps() {
+    this.childList.forEach(child => {
+      if (child.component) {
+        for (let [key, value] of Object.entries(child.props)) {
+          child.component.getProps({
+            [key]: new Fields().handle(value),
+          })
+        }
+      }
+    })
+  }
+
 
   create() {
     this.prepare()
@@ -59,6 +86,7 @@ export default class extends Sjs_render {
      * created lifecycle part
      */
     this.isPrepared = true
+    this.created()
     return this
   }
 

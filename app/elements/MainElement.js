@@ -10,6 +10,7 @@ class MainElement extends Sjs_el {
     text: 'Click me',
     newText: 'Hey, I am SJS!',
     color: 'green',
+    childProp: 'Child prop!', // prop
     font: '35px',
   }
 
@@ -34,16 +35,30 @@ class MainElement extends Sjs_el {
   }
 
   childList = [
-    ThirdApp,
+    {
+      component: ThirdApp,
+      props: {
+        msg: () => this.childProp,
+      },
+    },
   ]
 
   methods = {
     changeText: () => {
       this.changeData({
         text: this.newText,
+        childProp: 'Hello world',
       })
     },
   }
+
+  // mounted() {
+  //   //console.log('mounted:', this.childColor)
+  // }
+  //
+  // created() {
+  //   //console.log('created:', this.childColor)
+  // }
 
 }
 

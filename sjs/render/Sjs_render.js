@@ -9,8 +9,8 @@ export default class {
   /**
    * void
    */
-  useStyles(node, el) {
-    for (let [key, value] of Object.entries(el.styles)) {
+  useStyles(node, element) {
+    for (let [key, value] of Object.entries(element.styles)) {
       node.style[key] = new Fields().handle(value)
     }
   }
@@ -18,14 +18,16 @@ export default class {
   /**
    * void
    */
-  useTemplate(node, el) {
+  useTemplate(node, element) {
     // template
-    const { template, methods, name } = el
+    const { template, methods, name } = element
     if (!name) throw new Error('Element Name is required')
 
     const { id, content } = template
     if (id) node.setAttribute('id', id)
     node.setAttribute('name', name)
+    // mounted
+    element.mounted()
     node.innerText = new Fields().handle(content)
 
     //methods (events)
@@ -52,21 +54,21 @@ export default class {
   /**
    * void
    */
-  rerender(el) {
-    if (!el.name) throw new Error('Element Name is required')
-    const oldNode = document.querySelector(`[name=${el.name}]`)
-    if (oldNode) oldNode.replaceWith(this.elementNodeReducer(el))
+  rerender(element) {
+    if (!element.name) throw new Error('Element Name is required')
+    const oldNode = document.querySelector(`[name=${element.name}]`)
+    if (oldNode) oldNode.replaceWith(this.elementNodeReducer(element))
   }
 
   /**
    * @returns {HTMLElement}
    */
-  buildNode(el) {
-    if (!el) throw new Error('Element is required')
+  buildNode(element) {
+    if (!element) throw new Error('Element is required')
     // create node
-    let node = document.createElement(el.template.node || 'div')
-    if (el.template) this.useTemplate(node, el)
-    if (el.styles) this.useStyles(node, el)
+    let node = document.createElement(element.template.node || 'div')
+    if (element.template) this.useTemplate(node, element)
+    if (element.styles) this.useStyles(node, element)
 
 
     if (typeof node === 'object') return node
@@ -76,19 +78,20 @@ export default class {
   /**
    * @returns {HTMLElement}
    */
-  elementNodeReducer(el) {
+  elementNodeReducer(element) {
     // accumulator
     let rootNode = null
 
     // first acc
     if (!rootNode) {
-      rootNode = this.buildNode(el)
+      rootNode = this.buildNode(element)
     }
 
     // recursion!
-    if (el.childList && el.childList.length) {
-      el.childList.forEach(child => {
-        rootNode.appendChild(this.elementNodeReducer(child))
+    if (element.childList && element.childList.length) {
+      element.childList.forEach(child => {
+        // mounting
+        rootNode.appendChild(this.elementNodeReducer(child.component ? child.component : child))
       })
     }
 
@@ -100,13 +103,13 @@ export default class {
    * void
    */
   mountInit(parentNode, els) {
-    els.forEach(el => {
+    els.forEach(element => {
       // children's
-      if (el.childList && el.childList.length) {
-        parentNode.appendChild(this.elementNodeReducer(el))
+      if (element.childList && element.childList.length) {
+        parentNode.appendChild(this.elementNodeReducer(element))
       } else {
         // no children's
-        const builtChild = this.buildNode(el)
+        const builtChild = this.buildNode(element)
         parentNode.appendChild(builtChild)
       }
     })
@@ -120,19 +123,19 @@ export default class {
   }
 }
 
-// addElState(el) {
+// addElState(element) {
 //   for (let [key, value] of Object.entries(this.state)) {
-//     if (el.hasOwnProperty(key)) {
+//     if (element.hasOwnProperty(key)) {
 //       for (let [prop, propValue] of Object.entries(value)) {
-//         el[key][prop] = propValue
+//         element[key][prop] = propValue
 //       }
-//     } else el[key] = value
+//     } else element[key] = value
 //   }
 // }
 //
 //
-// addProps(node, el) {
-//   for (let [key, value] of Object.entries(el.props)) {
+// addProps(node, element) {
+//   for (let [key, value] of Object.entries(element.props)) {
 //     node.setAttribute(key, value)
 //   }
 // }
@@ -143,7 +146,7 @@ export default class {
 // }
 //
 // setWatcher(node) {
-//   // observe el:
+//   // observe element:
 //   const config = {
 //     childList: true,
 //     subtree: true,
