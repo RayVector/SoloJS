@@ -40,8 +40,8 @@ class MainElement extends Sjs_el {
       props: {
         msg: () => this.childProp,
       },
-      emits: {
-        newEmit: (e) => {
+      emitEvents: {
+        newEmit: e => {
           this.changeData({
             text: e,
           })

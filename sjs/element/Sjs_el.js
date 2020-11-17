@@ -84,7 +84,7 @@ export default class extends Sjs_render {
       }
 
       // set emits
-      if (child.emits) child.component.getEmits(child.emits)
+      if (child.emitEvents) child.component.getEmits(child.emitEvents)
 
     })
   }
