@@ -3,6 +3,7 @@
  */
 import Sjs_render from '../render/Sjs_render'
 import Fields from '../render/handlers/Fields'
+import SJS_Error from '../utils/SJS_Error'
 
 export default class extends Sjs_render {
   name = this.constructor.name
@@ -17,15 +18,8 @@ export default class extends Sjs_render {
   styles = {}
   methods = {}
   props = {}
+  emits = {}
   isPrepared = false
-
-  mounted() {
-    return true
-  }
-
-  created() {
-    return true
-  }
 
   constructor() {
     super()
@@ -35,11 +29,24 @@ export default class extends Sjs_render {
     this.props = props
   }
 
-  // todo: create field validation (no similar fields)
+  getEmits(emits) {
+    this.emits = emits
+  }
+
+  emit(name, data) {
+    if (!this.emits[name]) {
+      SJS_Error(`Emit '${name}' not found in component '${this.name}', component emits:`, this.emits)
+      return false
+    }
+
+    this.emits[name](data)
+  }
+
   changeData(newData) {
     for (const [key, value] of Object.entries(newData)) {
       if (!this.data[key]) {
-        throw new Error(`Not found "${key}" in "data"`)
+        SJS_Error(`Not found "${key}" in component '${this.name}', fields:`, this.data)
+        return false
       }
 
       if (this[key] !== value) this[key] = value
@@ -58,14 +65,15 @@ export default class extends Sjs_render {
         // add call stack for render to rerender all pack, no by one property
         set(value) {
           this['_' + key] = value
-          this.giveProps()
+          this.setProps()
           if (this.isPrepared) this.rerender(this)
         },
       })
     })
   }
 
-  giveProps() {
+  setProps() {
+    // give props
     this.childList.forEach(child => {
       if (child.component) {
         for (let [key, value] of Object.entries(child.props)) {
@@ -74,9 +82,20 @@ export default class extends Sjs_render {
           })
         }
       }
+
+      // set emits
+      if (child.emits) child.component.getEmits(child.emits)
+
     })
   }
 
+  mounted() {
+    return true
+  }
+
+  created() {
+    return true
+  }
 
   create() {
     this.prepare()

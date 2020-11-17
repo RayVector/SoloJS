@@ -12,11 +12,19 @@ class ThirdElement extends Sjs_el {
 
   data = {
     msg: this.styles,
+    emitMsg: 'EMIT prop:',
   }
 
   template = {
     node: 'div',
-    content: () => `Im a child! ${this.props.msg}`,
+    content: () => `${this.props.msg} Do emit to parent.`,
+    events: [
+      {
+        type: 'click',
+        name: 'doEmit',
+        isSelf: true,
+      },
+    ],
   }
 
   childList = [
@@ -27,6 +35,12 @@ class ThirdElement extends Sjs_el {
       },
     },
   ]
+
+  methods = {
+    doEmit: () => {
+      this.emit('newEmit', `${this.emitMsg} ${this.props.msg}`)
+    },
+  }
 
 
 }

@@ -3,6 +3,7 @@
  */
 import Events from './handlers/Events'
 import Fields from './handlers/Fields'
+import SJS_Error from '../utils/SJS_Error'
 
 export default class {
 
@@ -21,32 +22,32 @@ export default class {
   useTemplate(node, element) {
     // template
     const { template, methods, name } = element
-    if (!name) throw new Error('Element Name is required')
+    if (!name) {
+      SJS_Error(`Element Name is required`)
+      return
+    }
 
     const { id, content } = template
     if (id) node.setAttribute('id', id)
     node.setAttribute('name', name)
     // mounted
     element.mounted()
+
+    // set node content
     node.innerText = new Fields().handle(content)
 
     //methods (events)
     if (template.events && template.events.length) {
-      document.addEventListener('DOMContentLoaded', function(event) {
-        template.events.forEach(event => {
-          const handledEvent = new Events().handle(event.type)
-          node.addEventListener(handledEvent, e => {
-            // if isSelf
-            if (event.isSelf) {
-              if (node === e.target) methods[event.name](e)
-            } else {
-              methods[event.name](e)
-            }
-          })
+      template.events.forEach(event => {
+        const handledEvent = new Events().handle(event.type)
+        node.addEventListener(handledEvent, e => {
+          // if isSelf
+          if (event.isSelf) {
+            if (node === e.target) methods[event.name](e)
+          } else {
+            methods[event.name](e)
+          }
         })
-      })
-
-      document.removeEventListener('DOMContentLoaded', () => {
       })
     }
   }
@@ -64,7 +65,6 @@ export default class {
    * @returns {HTMLElement}
    */
   buildNode(element) {
-    if (!element) throw new Error('Element is required')
     // create node
     let node = document.createElement(element.template.node || 'div')
     if (element.template) this.useTemplate(node, element)

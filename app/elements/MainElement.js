@@ -7,10 +7,10 @@ class MainElement extends Sjs_el {
   }
 
   data = {
-    text: 'Click me',
+    text: 'Change text and pass prop',
     newText: 'Hey, I am SJS!',
     color: 'green',
-    childProp: 'Child prop!', // prop
+    childProp: 'It is prop text!', // prop
     font: '35px',
   }
 
@@ -40,6 +40,13 @@ class MainElement extends Sjs_el {
       props: {
         msg: () => this.childProp,
       },
+      emits: {
+        newEmit: (e) => {
+          this.changeData({
+            text: e,
+          })
+        },
+      },
     },
   ]
 
@@ -47,18 +54,18 @@ class MainElement extends Sjs_el {
     changeText: () => {
       this.changeData({
         text: this.newText,
-        childProp: 'Hello world',
+        childProp: 'Hello world.',
       })
     },
   }
 
-  // mounted() {
-  //   //console.log('mounted:', this.childColor)
-  // }
-  //
-  // created() {
-  //   //console.log('created:', this.childColor)
-  // }
+  created() {
+    console.log('created!')
+  }
+
+  mounted() {
+    console.log('mounted!')
+  }
 
 }
 
