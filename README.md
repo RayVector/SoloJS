@@ -6,28 +6,34 @@
 
 SJS (SoloJS) - JavaScript modular UI-framework, who takes care of all the work with HTML, CSS and JS in one code flow. 
 You just write only JS code, which will be HTML, CSS, JS. Inside the framework also exist UI components.
+
+Simply put - JS framework to build UI, where you just a describe you component  on JavaScript language.
 ___
 
 <a href="https://github.com/users/RayVector/projects/1?add_cards_query=is%3Aopen">Project Plan</a>
 
 ___
 
-## General overview:
+# General overview, parts of component:
 
 (MainElement.js)
 
-1) Component state:
+___
+
+## State:
 ```javascript
   data = {
     text: 'Click me',
     newText: 'Hey, I am SJS!',
     color: 'green',
-    childProp: 'Child prop!', // prop
+    childProp: 'Child prop!', // state field for prop to child
     font: '35px',
   }
 ```
 
-2) Template engine:
+___
+
+## Template engine:
 ```javascript
   template = {
     id: 'MainApp',
@@ -43,8 +49,9 @@ ___
   }
 ```
 
+___
 
-3) Component methods:
+## Methods:
 ```javascript
   methods = {
     changeText: () => { 
@@ -56,7 +63,9 @@ ___
   }
 ```
 
-3) Component styles:
+___
+
+## Styles:
 ```javascript
   styles = {
     color: () => this.color, // dynamically binding styles to state
@@ -66,13 +75,22 @@ ___
   }
 ```
 
-4) Component children:
+___
+
+## Children:
 ```javascript
   childList = [
     {
       component: ThirdApp,
-      props: {
+      props: { // props to ThirdApp component
         msg: () => this.childProp,
+      },
+      emitEvents: { // emit events from ThirdApp component
+        newEmit: (e) => {
+          this.changeData({
+            text: e,
+          })
+        },
       },
     },
   ]
@@ -82,7 +100,9 @@ ___
   ]
 ```
 
-5) Component lifecycles:
+___
+
+## Lifecycle:
 ```javascript
   created() {
     console.log('created!')
@@ -92,9 +112,9 @@ ___
     console.log('mounted!')
   }
 ```
+___
 
-
-0) SJS Component total view:
+## Total view:
 
 ```javascript
 import Sjs_el from '../../sjs/element/Sjs_el'
@@ -106,10 +126,10 @@ class MainElement extends Sjs_el {
   }
 
   data = {
-    text: 'Click me',
+    text: 'Change text and pass prop',
     newText: 'Hey, I am SJS!',
     color: 'green',
-    childProp: 'Child prop!', // prop
+    childProp: 'It is prop text!',
     font: '35px',
   }
 
@@ -139,6 +159,13 @@ class MainElement extends Sjs_el {
       props: {
         msg: () => this.childProp,
       },
+      emitEvents: {
+        newEmit: e => {
+          this.changeData({
+            text: e,
+          })
+        },
+      },
     },
   ]
 
@@ -146,7 +173,7 @@ class MainElement extends Sjs_el {
     changeText: () => {
       this.changeData({
         text: this.newText,
-        childProp: 'Hello world',
+        childProp: 'Hello world.',
       })
     },
   }
@@ -159,22 +186,77 @@ class MainElement extends Sjs_el {
     console.log('mounted!')
   }
 
-  
-
 }
 
 export default new MainElement().create()
 ```
+
 ___
 
-## Begin:
+## Init App:
 
 (main.js)
 
-```
+```javascript
 import Sjs from '../sjs/Sjs'
 import MainElement from './elements/MainElement'
 import SecondElement from './elements/SecondElement'
 
-new Sjs().init('app', [MainElement, SecondElement]) // array of neighbors
+new Sjs().init('app', [MainElement, SecondElement]) // array of neighbors, you can pass one element or array of elements
+```
+___
+
+
+
+# Detailed overview:
+___
+
+## Emits:
+
+(ThirdElement.js) - child of MainElement.js
+
+```javascript
+  methods = {
+    doEmit: () => {
+       this.emit(emitName, emitData) // emit method to parent, emitName should be like emit event in parent
+    },
+  }
+```
+
+___
+
+
+## Handle Emits:
+
+(MainElement.js)
+
+```javascript
+  childList = [
+    {
+      component: ThirdApp,
+      props: {
+        msg: () => this.childProp,
+      },
+      emitEvents: {
+        newEmit: e => {
+          this.changeData({ // update state from child by emit event
+            text: e,
+          })
+        },
+      },
+    },
+  ]
+```
+
+___
+
+
+## Emit Data as Prop:
+
+```
+  methods = {
+    doEmit: () => {
+      this.emit('newEmit', `${this.emitMsg} ${this.props.msg}`)
+    },
+  }
 ```
