@@ -29,7 +29,7 @@ class ThirdElement extends Sjs_el {
 
   childList = [
     {
-      component: FourthElement,
+      component: new FourthElement().create(),
       props: {
         msg: () => this.msg,
       },
@@ -45,4 +45,4 @@ class ThirdElement extends Sjs_el {
 
 }
 
-export default new ThirdElement().create()
+export default ThirdElement

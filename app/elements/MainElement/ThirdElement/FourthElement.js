@@ -16,4 +16,4 @@ class FourthElement extends Sjs_el {
 
 }
 
-export default new FourthElement().create()
+export default FourthElement

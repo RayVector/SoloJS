@@ -7,7 +7,7 @@ class SecondElement extends Sjs_el {
 
   styles = {
     fontSize: '25px',
-    color: 'darkblue'
+    color: 'darkblue',
   }
 
   template = {
@@ -18,4 +18,4 @@ class SecondElement extends Sjs_el {
 }
 
 
-export default new SecondElement().create()
+export default SecondElement

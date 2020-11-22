@@ -30,6 +30,7 @@ export default class {
     const { id, content } = template
     if (id) node.setAttribute('id', id)
     node.setAttribute('name', name)
+    node.setAttribute('uuid', element.$id)
     // mounted
     element.mounted()
 
@@ -56,9 +57,21 @@ export default class {
    * void
    */
   rerender(element) {
-    if (!element.name) throw new Error('Element Name is required')
-    const oldNode = document.querySelector(`[name=${element.name}]`)
-    if (oldNode) oldNode.replaceWith(this.elementNodeReducer(element))
+    let oldNode = null
+    if (!element.name) {
+      SJS_Error(`Element Name is required`)
+      return
+    }
+
+    if (!element.$id) {
+      SJS_Error(`Element $id is required`)
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      oldNode = document.querySelector(`[uuid=${element.$id}]`)
+      if (oldNode) oldNode.replaceWith(this.elementNodeReducer(element))
+    }
+
   }
 
   /**
