@@ -1,5 +1,5 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
-import ThirdApp from './MainElement/ThirdElement'
+import ThirdElement from './MainElement/ThirdElement'
 
 class MainElement extends Sjs_el {
   constructor() {
@@ -36,7 +36,7 @@ class MainElement extends Sjs_el {
 
   childList = [
     {
-      component: ThirdApp,
+      component: new ThirdElement().create(),
       props: {
         msg: () => this.childProp,
       },
@@ -59,14 +59,14 @@ class MainElement extends Sjs_el {
     },
   }
 
-  created() {
-    console.log('created!')
-  }
-
-  mounted() {
-    console.log('mounted!')
-  }
+  // created() {
+  //   console.log('created!')
+  // }
+  //
+  // mounted() {
+  //   console.log('mounted!')
+  // }
 
 }
 
-export default new MainElement().create()
+export default MainElement

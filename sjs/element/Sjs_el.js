@@ -4,9 +4,9 @@
 import Sjs_render from '../render/Sjs_render'
 import Fields from '../render/handlers/Fields'
 import SJS_Error from '../utils/SJS_Error'
+import { v4 as uuid } from 'uuid'
 
 export default class extends Sjs_render {
-  name = this.constructor.name
   data = {}
   template = {
     id: '',
@@ -23,6 +23,8 @@ export default class extends Sjs_render {
 
   constructor() {
     super()
+    this.$id = `SJS-${uuid()}`
+    this.name = this.constructor.name
   }
 
   getProps(props = {}) {
