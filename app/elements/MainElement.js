@@ -55,17 +55,26 @@ class MainElement extends Sjs_el {
       this.changeData({
         text: this.newText,
         childProp: 'Hello world.',
+        color: '#000000',
       })
     },
   }
 
-  // created() {
-  //   console.log('created!')
-  // }
-  //
-  // mounted() {
-  //   console.log('mounted!')
-  // }
+  created(el) {
+    console.log('created!', el)
+  }
+
+  mounted(el) {
+    console.log('mounted!', el)
+  }
+
+  rerendered(el) {
+    console.log('rerendered!', el)
+  }
+
+  gotProps(e) {
+    console.log('gotProps:', e)
+  }
 
 }
 

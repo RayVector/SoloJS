@@ -31,9 +31,6 @@ export default class {
     if (id) node.setAttribute('id', id)
     node.setAttribute('name', name)
     node.setAttribute('uuid', element.$id)
-    // mounted
-    element.mounted()
-
     // set node content
     node.innerText = new Fields().handle(content)
 
@@ -71,7 +68,7 @@ export default class {
       oldNode = document.querySelector(`[uuid=${element.$id}]`)
       if (oldNode) oldNode.replaceWith(this.elementNodeReducer(element))
     }
-
+    element.rerendered(element)
   }
 
   /**
@@ -103,11 +100,12 @@ export default class {
     // recursion!
     if (element.childList && element.childList.length) {
       element.childList.forEach(child => {
+        const optionalChild = child.component ? child.component : child
         // mounting
-        rootNode.appendChild(this.elementNodeReducer(child.component ? child.component : child))
+        rootNode.appendChild(this.elementNodeReducer(optionalChild))
       })
     }
-
+    element.mounted(element)
     // node
     return rootNode
   }
@@ -122,6 +120,7 @@ export default class {
         parentNode.appendChild(this.elementNodeReducer(element))
       } else {
         // no children's
+        element.mounted(element)
         const builtChild = this.buildNode(element)
         parentNode.appendChild(builtChild)
       }
@@ -136,27 +135,6 @@ export default class {
   }
 }
 
-// addElState(element) {
-//   for (let [key, value] of Object.entries(this.state)) {
-//     if (element.hasOwnProperty(key)) {
-//       for (let [prop, propValue] of Object.entries(value)) {
-//         element[key][prop] = propValue
-//       }
-//     } else element[key] = value
-//   }
-// }
-//
-//
-// addProps(node, element) {
-//   for (let [key, value] of Object.entries(element.props)) {
-//     node.setAttribute(key, value)
-//   }
-// }
-//
-//
-// useMethods(node, methods) {
-//
-// }
 //
 // setWatcher(node) {
 //   // observe element:

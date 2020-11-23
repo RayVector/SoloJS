@@ -51,7 +51,10 @@ export default class extends Sjs_render {
         return false
       }
 
-      if (this[key] !== value) this[key] = value
+      if (this[key] !== value) {
+        this[key] = value
+        if (this.isPrepared) this.rerender(this)
+      }
     }
 
     return true
@@ -64,11 +67,9 @@ export default class extends Sjs_render {
           return this['_' + key]
         },
 
-        // add call stack for render to rerender all pack, no by one property
         set(value) {
           this['_' + key] = value
           this.setProps()
-          if (this.isPrepared) this.rerender(this)
         },
       })
     })
@@ -99,15 +100,15 @@ export default class extends Sjs_render {
     return true
   }
 
+  rerendered() {
+    return true
+  }
+
   create() {
     this.prepare()
     this.changeData(this.data)
-
-    /**
-     * created lifecycle part
-     */
     this.isPrepared = true
-    this.created()
+    this.created(this)
     return this
   }
 

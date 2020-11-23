@@ -9,11 +9,6 @@ class FourthElement extends Sjs_el {
     node: 'div',
     content: 'Im a child of child!',
   }
-
-  mounted() {
-    this.styles = this.props.msg
-  }
-
 }
 
 export default FourthElement
