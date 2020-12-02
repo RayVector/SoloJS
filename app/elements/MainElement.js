@@ -7,16 +7,24 @@ class MainElement extends Sjs_el {
   }
 
   data = {
-    text: 'Change text and pass prop',
-    newText: 'Hey, I am SJS!',
+    text: 'User list:',
     color: 'green',
-    childProp: 'It is prop text!', // prop
     font: '35px',
+    list: [
+      {
+        name: 'Nick',
+        age: 24,
+      },
+      {
+        name: 'Rachel',
+        age: 20,
+      },
+    ],
   }
 
   styles = {
-    color: () => this.color,
-    fontSize: () => this.font,
+    color: () => this.data.color,
+    fontSize: () => this.data.font,
     display: 'flex',
     flexDirection: 'column',
   }
@@ -24,58 +32,37 @@ class MainElement extends Sjs_el {
   template = {
     id: 'MainApp',
     node: 'div',
-    content: () => this.text,
-    events: [
-      {
-        type: 'click',
-        name: 'changeText',
-        isSelf: true,
-      },
-    ],
+    content: () => this.data.text,
   }
 
   childList = [
+    () => this.data.list.map((el, elIndex) => {
+      return {
+        component: new ThirdElement().create(),
+        props: {
+          name: () => el.name,
+          age: () => el.age,
+        },
+        emitEvents: {
+          newEmit: (emitData) => {
+            const newList = this.data.list
+            newList[elIndex].name = 'Pavel'
+            newList[elIndex].age = 55
+            this.changeData({
+              list: newList,
+            })
+          },
+        },
+      }
+    }),
     {
       component: new ThirdElement().create(),
       props: {
-        msg: () => this.childProp,
-      },
-      emitEvents: {
-        newEmit: e => {
-          this.changeData({
-            text: e,
-          })
-        },
+        name: () => 'TestName',
+        age: () => 88,
       },
     },
   ]
-
-  methods = {
-    changeText: () => {
-      this.changeData({
-        text: this.newText,
-        childProp: 'Hello world.',
-        color: '#000000',
-      })
-    },
-  }
-
-  created(el) {
-    console.log('created!', el)
-  }
-
-  mounted(el) {
-    console.log('mounted!', el)
-  }
-
-  rerendered(el) {
-    console.log('rerendered!', el)
-  }
-
-  gotProps(e) {
-    console.log('gotProps:', e)
-  }
-
 }
 
 export default MainElement

@@ -28,7 +28,7 @@ export default class extends Sjs_render {
   }
 
   getProps(props = {}) {
-    this.props = props
+    Object.assign(this.props, props)
   }
 
   getEmits(emits) {
@@ -45,37 +45,35 @@ export default class extends Sjs_render {
   }
 
   changeData(newData) {
+    this.setProps()
+
     for (const [key, value] of Object.entries(newData)) {
       if (!this.data[key]) {
         SJS_Error(`Not found "${key}" in component '${this.name}', fields:`, this.data)
         return false
       }
-
-      if (this[key] !== value) {
-        this[key] = value
-        if (this.isPrepared) this.rerender(this)
-      }
+      // TODO: add old/new values validation (strings, arrays, objects, booleans, numbers) this[key] !== value
+      this[key] = value
+      if (this.isPrepared) this.rerender(this)
     }
 
     return true
   }
 
-  prepare() {
-    Object.keys(this.data).forEach(key => {
-      Object.defineProperty(this, key, {
-        get() {
-          return this['_' + key]
-        },
-
-        set(value) {
-          this['_' + key] = value
-          this.setProps()
-        },
+  prepareChildList() {
+    const preparedChildList = []
+    this.childList.forEach(child => {
+      if (typeof child === 'function') child().forEach(innerChild => {
+        preparedChildList.push(innerChild)
       })
+      else preparedChildList.push(child)
     })
+    this.childList = preparedChildList
   }
 
   setProps() {
+    this.prepareChildList()
+
     // give props
     this.childList.forEach(child => {
       if (child.component) {
@@ -105,7 +103,6 @@ export default class extends Sjs_render {
   }
 
   create() {
-    this.prepare()
     this.changeData(this.data)
     this.isPrepared = true
     this.created(this)

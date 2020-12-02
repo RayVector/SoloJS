@@ -105,7 +105,7 @@ export default class {
         rootNode.appendChild(this.elementNodeReducer(optionalChild))
       })
     }
-    element.mounted(element)
+    if (element.mounted) element.mounted(element)
     // node
     return rootNode
   }
@@ -117,6 +117,7 @@ export default class {
     els.forEach(element => {
       // children's
       if (element.childList && element.childList.length) {
+
         parentNode.appendChild(this.elementNodeReducer(element))
       } else {
         // no children's
