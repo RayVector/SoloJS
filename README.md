@@ -86,9 +86,9 @@ ___
         msg: () => this.childProp,
       },
       emitEvents: { // emit events from ThirdApp component
-        newEmit: (e) => {
+        newEmit: emitData => {
           this.changeData({
-            text: e,
+            text: emitData,
           })
         },
       },
@@ -160,9 +160,9 @@ class MainElement extends Sjs_el {
         msg: () => this.childProp,
       },
       emitEvents: {
-        newEmit: e => {
+        newEmit: emitData => {
           this.changeData({
-            text: e,
+            text: emitData,
           })
         },
       },
@@ -238,9 +238,9 @@ ___
         msg: () => this.childProp,
       },
       emitEvents: {
-        newEmit: e => {
+        newEmit: emitData => {
           this.changeData({ // update state from child by emit event
-            text: e,
+            text: emitData,
           })
         },
       },
