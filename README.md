@@ -21,5 +21,6 @@ ___
 
 <a href="https://github.com/RayVector/SoloJS/wiki/Emitting-from-Child-to-Parent">Emits</a>
 
+<a href="https://github.com/RayVector/SoloJS/wiki/Lists-rendering">Lists rendering</a>
 
 
