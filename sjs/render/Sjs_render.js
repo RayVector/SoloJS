@@ -9,6 +9,7 @@ export default class {
 
   /**
    * void
+   * add styles to node
    */
   useStyles(node, element) {
     for (let [key, value] of Object.entries(element.styles)) {
@@ -18,6 +19,7 @@ export default class {
 
   /**
    * void
+   * setup html to node
    */
   useTemplate(node, element) {
     // template
@@ -50,35 +52,66 @@ export default class {
     }
   }
 
+
   /**
    * void
+   * this method calls child method 'get props' for passing props to child
    */
-  rerender(element) {
+  setProps(component) {
+    if (component.childList.length) {
+      // give props
+      component.childList.forEach(child => {
+        if (child.component && child.props) {
+          for (let [key, value] of Object.entries(child.props)) {
+            child.component.getProps({
+              [key]: new Fields().handle(value),
+            })
+          }
+        }
+
+        // set emits
+        if (child.emitEvents) child.component.getEmits(child.emitEvents)
+
+      })
+    }
+  }
+
+  /**
+   * void
+   * component rerendered
+   * f this.setProps
+   * f this.componentNodeReducer
+   */
+  rerender(component) {
+    this.setProps(component)
+
     let oldNode = null
-    if (!element.name) {
+    if (!component.name) {
       SJS_Error(`Element Name is required`)
       return
     }
 
-    if (!element.$id) {
+    if (!component.$id) {
       SJS_Error(`Element $id is required`)
     }
 
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      oldNode = document.querySelector(`[uuid=${element.$id}]`)
-      if (oldNode) oldNode.replaceWith(this.elementNodeReducer(element))
+      oldNode = document.querySelector(`[uuid=${component.$id}]`)
+      if (oldNode) oldNode.replaceWith(this.componentNodeReducer(component))
     }
-    element.rerendered(element)
+    component.rerendered(component)
   }
 
   /**
    * @returns {HTMLElement}
+   * f this.useTemplate
+   * f this.useStyles
    */
-  buildNode(element) {
+  buildNode(component) {
     // create node
-    let node = document.createElement(element.template.node || 'div')
-    if (element.template) this.useTemplate(node, element)
-    if (element.styles) this.useStyles(node, element)
+    let node = document.createElement(component.template.node || 'div')
+    if (component.template) this.useTemplate(node, component)
+    if (component.styles) this.useStyles(node, component)
 
 
     if (typeof node === 'object') return node
@@ -87,52 +120,50 @@ export default class {
 
   /**
    * @returns {HTMLElement}
+   * !recursion! while child in childList
+   * component with child mounted
+   * f this.componentNodeReducer
+   * f this.buildNode
    */
-  elementNodeReducer(element) {
+  componentNodeReducer(component) {
     // accumulator
     let rootNode = null
 
     // first acc
     if (!rootNode) {
-      rootNode = this.buildNode(element)
+      rootNode = this.buildNode(component)
     }
 
-    // recursion!
-    if (element.childList && element.childList.length) {
-      element.childList.forEach(child => {
+    if (component.childList && component.childList.length) {
+      component.childList.forEach(child => {
         const optionalChild = child.component ? child.component : child
         // mounting
-        rootNode.appendChild(this.elementNodeReducer(optionalChild))
+        rootNode.appendChild(this.componentNodeReducer(optionalChild))
       })
     }
-    if (element.mounted) element.mounted(element)
+    if (component.mounted) component.mounted(component)
     // node
     return rootNode
   }
 
   /**
    * void
+   * component mounted
+   * f this.componentNodeReducer
+   * f this.buildNode
    */
-  mountInit(parentNode, els) {
-    els.forEach(element => {
+  render(parentNode, els) {
+    els.forEach(component => {
       // children's
-      if (element.childList && element.childList.length) {
-
-        parentNode.appendChild(this.elementNodeReducer(element))
+      if (component.childList && component.childList.length) {
+        parentNode.appendChild(this.componentNodeReducer(component))
       } else {
         // no children's
-        element.mounted(element)
-        const builtChild = this.buildNode(element)
+        component.mounted(component)
+        const builtChild = this.buildNode(component)
         parentNode.appendChild(builtChild)
       }
     })
-  }
-
-  /**
-   * void
-   */
-  render(parentNode, els) {
-    this.mountInit(parentNode, els)
   }
 }
 

@@ -1,5 +1,6 @@
 import Sjs_el from '../../sjs/element/Sjs_el'
 import ThirdElement from './MainElement/ThirdElement'
+import SecondElement from './SecondElement'
 
 class MainElement extends Sjs_el {
   constructor() {
@@ -38,16 +39,18 @@ class MainElement extends Sjs_el {
   childList = [
     () => this.data.list.map((el, elIndex) => {
       return {
-        component: new ThirdElement().create(),
+        component: ThirdElement,
         props: {
           name: () => el.name,
           age: () => el.age,
         },
         emitEvents: {
-          newEmit: (emitData) => {
+          newEmit: () => {
             const newList = this.data.list
+
             newList[elIndex].name = 'Pavel'
             newList[elIndex].age = 55
+
             this.changeData({
               list: newList,
             })
@@ -56,12 +59,13 @@ class MainElement extends Sjs_el {
       }
     }),
     {
-      component: new ThirdElement().create(),
+      component: ThirdElement,
       props: {
         name: () => 'TestName',
         age: () => 88,
       },
     },
+    { component: SecondElement },
   ]
 }
 
