@@ -15,9 +15,11 @@ ___
 ___
 
 
-<a href="https://github.com/RayVector/SoloJS/wiki/General-review.-Component-parts"># General overview, parts of component</a>
+## Documentation:
 
-<a href="https://github.com/RayVector/SoloJS/wiki/Emitting-from-Child-to-Parent"># Emits</a>
+<a href="https://github.com/RayVector/SoloJS/wiki/General-review.-Component-parts">General overview, parts of component</a>
+
+<a href="https://github.com/RayVector/SoloJS/wiki/Emitting-from-Child-to-Parent">Emits</a>
 
 
 
