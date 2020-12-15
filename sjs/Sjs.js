@@ -29,6 +29,7 @@ export default class extends Sjs_render {
    * !recursion! while child in childList
    * f this.prepareChildList
    * f this.initChild
+   * f this.setProps
    */
   initChild(component) {
     const createdComponent = new component().create()
@@ -41,23 +42,12 @@ export default class extends Sjs_render {
         }
       })
     }
+
+    // set props
+    this.setProps(createdComponent)
     return createdComponent
   }
 
-  /**
-   *
-   * @returns {Array}
-   * f this.initChild
-   * f this.setProps
-   *
-   */
-  combine(els) {
-    return els.map(el => {
-      const createdComponent = this.initChild(el)
-      this.setProps(createdComponent)
-      return createdComponent
-    })
-  }
 
   /**
    * void
@@ -75,6 +65,6 @@ export default class extends Sjs_render {
       return
     }
 
-    this.render(document.getElementById(nodeId), this.combine(els))
+    this.render(document.getElementById(nodeId), els.map(el => this.initChild(el)))
   }
 }

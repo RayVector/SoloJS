@@ -5,9 +5,13 @@ class FourthElement extends Sjs_el {
     super(props)
   }
 
+  styles = {
+    paddingLeft: '50px',
+  }
+
   template = {
     node: 'div',
-    content: 'Im a child of child!',
+    content: () => `id: ${this.props.id}`,
   }
 }
 

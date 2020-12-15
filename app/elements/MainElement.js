@@ -13,10 +13,12 @@ class MainElement extends Sjs_el {
     font: '35px',
     list: [
       {
+        id: 1,
         name: 'Nick',
         age: 24,
       },
       {
+        id: 2,
         name: 'Rachel',
         age: 20,
       },
@@ -43,6 +45,7 @@ class MainElement extends Sjs_el {
         props: {
           name: () => el.name,
           age: () => el.age,
+          id: () => el.id,
         },
         emitEvents: {
           newEmit: () => {
@@ -58,14 +61,6 @@ class MainElement extends Sjs_el {
         },
       }
     }),
-    {
-      component: ThirdElement,
-      props: {
-        name: () => 'TestName',
-        age: () => 88,
-      },
-    },
-    { component: SecondElement },
   ]
 }
 

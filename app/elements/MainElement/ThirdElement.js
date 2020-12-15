@@ -10,9 +10,20 @@ class ThirdElement extends Sjs_el {
     paddingLeft: '50px',
   }
 
+  data = {
+    list: [
+      {
+        id: 1,
+      },
+      {
+        id: 2,
+      },
+    ],
+  }
+
   template = {
     node: 'div',
-    content: () => `${this.props.name} ${this.props.age}`,
+    content: () => `${this.props.id} ${this.props.name} ${this.props.age}`,
     events: [
       {
         type: 'click',
@@ -21,6 +32,17 @@ class ThirdElement extends Sjs_el {
       },
     ],
   }
+
+  childList = [
+    () => this.data.list.map(el => {
+      return {
+        component: FourthElement,
+        props: {
+          id: () => el.id,
+        },
+      }
+    }),
+  ]
 
   methods = {
     doEmit: () => {
