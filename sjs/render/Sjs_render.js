@@ -5,7 +5,12 @@ import Events from './handlers/Events'
 import Fields from './handlers/Fields'
 import SJS_Error from '../utils/SJS_Error'
 
-export default class {
+export default {
+  options: {},
+
+  setOptions(options) {
+    this.options = options
+  },
 
   /**
    * void
@@ -15,7 +20,7 @@ export default class {
     for (let [key, value] of Object.entries(element.styles)) {
       node.style[key] = new Fields().handle(value)
     }
-  }
+  },
 
   /**
    * void
@@ -34,7 +39,8 @@ export default class {
     node.setAttribute('name', name)
     node.setAttribute('uuid', element.$id)
     // set node content
-    node.innerText = new Fields().handle(content)
+    node[this.options.enableHTML ? 'innerHTML' : 'innerText'] = new Fields().handle(content)
+
 
     //methods (events)
     if (template.events && template.events.length) {
@@ -50,7 +56,7 @@ export default class {
         })
       })
     }
-  }
+  },
 
 
   /**
@@ -74,7 +80,7 @@ export default class {
 
       })
     }
-  }
+  },
 
   /**
    * void
@@ -100,7 +106,7 @@ export default class {
       if (oldNode) oldNode.replaceWith(this.componentNodeReducer(component))
     }
     component.rerendered(component)
-  }
+  },
 
   /**
    * @returns {HTMLElement}
@@ -116,7 +122,7 @@ export default class {
 
     if (typeof node === 'object') return node
     return null
-  }
+  },
 
   /**
    * @returns {HTMLElement}
@@ -144,7 +150,7 @@ export default class {
     if (component.mounted) component.mounted(component)
     // node
     return rootNode
-  }
+  },
 
   /**
    * void
@@ -164,7 +170,7 @@ export default class {
         parentNode.appendChild(builtChild)
       }
     })
-  }
+  },
 }
 
 //

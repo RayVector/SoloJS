@@ -1,4 +1,5 @@
 import Sjs from '../sjs/Sjs'
 import MainElement from './elements/MainElement'
+import config from './sjs.config'
 
-new Sjs().init('app', [MainElement])
+Sjs.init('app', [MainElement], config)

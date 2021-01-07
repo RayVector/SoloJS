@@ -4,7 +4,7 @@
 import Sjs_render from './render/Sjs_render'
 import SJS_Error from './utils/SJS_Error'
 
-export default class extends Sjs_render {
+export default {
 
   /**
    * void
@@ -21,7 +21,7 @@ export default class extends Sjs_render {
       } else preparedChildList.push(child)
     })
     component.childList = preparedChildList
-  }
+  },
 
   /**
    * @returns {Object}
@@ -44,9 +44,9 @@ export default class extends Sjs_render {
     }
 
     // set props
-    this.setProps(createdComponent)
+    Sjs_render.setProps(createdComponent)
     return createdComponent
-  }
+  },
 
 
   /**
@@ -54,7 +54,9 @@ export default class extends Sjs_render {
    * f this.render
    * f this.combine
    */
-  init(nodeId, els) {
+  init(nodeId, els, config) {
+    if (config) Sjs_render.setOptions(config)
+
     if (!els || !els.length) {
       SJS_Error('Sjs init: Element is required for render')
       return
@@ -65,6 +67,6 @@ export default class extends Sjs_render {
       return
     }
 
-    this.render(document.getElementById(nodeId), els.map(el => this.initChild(el)))
-  }
+    Sjs_render.render(document.getElementById(nodeId), els.map(el => this.initChild(el)))
+  },
 }

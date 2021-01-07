@@ -11,6 +11,7 @@ class MainElement extends Sjs_el {
     text: 'User list:',
     color: 'green',
     font: '35px',
+    text2: 'Hello world!',
     list: [
       {
         id: 1,
@@ -28,14 +29,12 @@ class MainElement extends Sjs_el {
   styles = {
     color: () => this.data.color,
     fontSize: () => this.data.font,
-    display: 'flex',
-    flexDirection: 'column',
   }
 
   template = {
     id: 'MainApp',
     node: 'div',
-    content: () => this.data.text,
+    content: () => `${this.data.text}`,
   }
 
   childList = [
@@ -62,6 +61,7 @@ class MainElement extends Sjs_el {
       }
     }),
   ]
+
 }
 
 export default MainElement

@@ -5,7 +5,7 @@ import Sjs_render from '../render/Sjs_render'
 import SJS_Error from '../utils/SJS_Error'
 import { v4 as uuid } from 'uuid'
 
-export default class extends Sjs_render {
+export default class {
   data = {}
   template = {
     id: '',
@@ -21,7 +21,6 @@ export default class extends Sjs_render {
   isPrepared = false
 
   constructor() {
-    super()
     this.$id = `SJS-${uuid()}`
     this.name = this.constructor.name
   }
@@ -56,7 +55,7 @@ export default class extends Sjs_render {
       this[key] = value
     }
 
-    if (this.isPrepared) this.rerender(this)
+    if (this.isPrepared) Sjs_render.rerender(this)
 
     return true
   }
