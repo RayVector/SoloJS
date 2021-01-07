@@ -60,6 +60,12 @@ class MainElement extends Sjs_el {
         },
       }
     }),
+    {
+      template: {
+        node: 'p',
+        content: 'Hey from free node!',
+      },
+    },
   ]
 
 }

@@ -28,15 +28,10 @@ export default {
    */
   useTemplate(node, element) {
     // template
-    const { template, methods, name } = element
-    if (!name) {
-      SJS_Error(`Element Name is required`)
-      return
-    }
+    const { template, methods } = element
 
     const { id, content } = template
     if (id) node.setAttribute('id', id)
-    node.setAttribute('name', name)
     node.setAttribute('uuid', element.$id)
     // set node content
     node[this.options.enableHTML ? 'innerHTML' : 'innerText'] = new Fields().handle(content)
@@ -92,10 +87,6 @@ export default {
     this.setProps(component)
 
     let oldNode = null
-    if (!component.name) {
-      SJS_Error(`Element Name is required`)
-      return
-    }
 
     if (!component.$id) {
       SJS_Error(`Element $id is required`)
