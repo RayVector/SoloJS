@@ -51,8 +51,7 @@ export default class {
         SJS_Error(`Not found "${key}" in component '${this.name}', fields:`, this.data)
         return false
       }
-
-      this[key] = value
+      this.data[key] = value
     }
 
     if (this.isPrepared) Sjs_render.rerender(this)
