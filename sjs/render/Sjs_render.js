@@ -28,7 +28,7 @@ export default {
    */
   useTemplate(node, element) {
     // template
-    const { template, methods } = element
+    const { template, events } = element
 
     const { id, content } = template
     if (id) node.setAttribute('id', id)
@@ -37,16 +37,16 @@ export default {
     node[this.options.enableHTML ? 'innerHTML' : 'innerText'] = new Fields().handle(content)
 
 
-    //methods (events)
+    // events
     if (template.events && template.events.length) {
       template.events.forEach(event => {
         const handledEvent = new Events().handle(event.type)
         node.addEventListener(handledEvent, e => {
           // if isSelf
           if (event.isSelf) {
-            if (node === e.target) methods[event.name](e)
+            if (node === e.target) events[event.name](e)
           } else {
-            methods[event.name](e)
+            events[event.name](e)
           }
         })
       })

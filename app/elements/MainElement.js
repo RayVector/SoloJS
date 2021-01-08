@@ -34,7 +34,11 @@ class MainElement extends Sjs_el {
   template = {
     id: 'MainApp',
     node: 'div',
-    content: () => `${this.data.text}`,
+    content: () => `${this.getReversedText()}`,
+  }
+
+  getReversedText() {
+    return this.data.text.split('').reverse().join('')
   }
 
   childList = [

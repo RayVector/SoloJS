@@ -44,7 +44,7 @@ class ThirdElement extends Sjs_el {
     }),
   ]
 
-  methods = {
+  events = {
     doEmit: () => {
       this.emit('newEmit')
     },

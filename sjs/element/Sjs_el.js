@@ -15,7 +15,7 @@ export default class {
   }
   childList = []
   styles = {}
-  methods = {}
+  events = {}
   props = {}
   emits = {}
   isPrepared = false
