@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e91f1f7-0b71-416d-9985-618ece1ce37c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SoloJS" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="global_rafctor" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1kIIng2iNSMFdFtIWrDYjNy1Hda" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindowVersion Control.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="F:\Programs\JetBrains\WebStorm 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\IT\Projects\JS\SoloJS\app" />
+      <recent name="F:\IT\Projects\JS\SoloJS\sjs" />
+      <recent name="F:\IT\Projects\JS\SoloJS" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e91f1f7-0b71-416d-9985-618ece1ce37c" name="Default Changelist" comment="" />
+      <created>1605381849819</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605381849819</updated>
+      <workItem from="1605381872612" duration="10916000" />
+      <workItem from="1605445282883" duration="2240000" />
+      <workItem from="1605478870293" duration="597000" />
+      <workItem from="1605628275499" duration="4009000" />
+      <workItem from="1605644089324" duration="8047000" />
+      <workItem from="1605963851268" duration="5353000" />
+      <workItem from="1606051590919" duration="11647000" />
+      <workItem from="1606152603949" duration="2641000" />
+      <workItem from="1606228083139" duration="9424000" />
+      <workItem from="1606253068646" duration="5809000" />
+      <workItem from="1606409707288" duration="4093000" />
+      <workItem from="1606583513254" duration="2915000" />
+      <workItem from="1606926375863" duration="14173000" />
+      <workItem from="1607986017107" duration="8339000" />
+      <workItem from="1610041721160" duration="14008000" />
+      <workItem from="1610095690329" duration="11838000" />
+      <workItem from="1610483709085" duration="28190000" />
+      <workItem from="1613646713290" duration="1465000" />
+      <workItem from="1613668185715" duration="8993000" />
+      <workItem from="1614364183995" duration="333000" />
+      <workItem from="1615287405001" duration="1876000" />
+    </task>
+    <task id="LOCAL-00001" summary="text changed">
+      <created>1605389138959</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605389138959</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Component/Template/Events: isSelf added">
+      <created>1605390878546</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605390878546</updated>
+    </task>
+    <task id="LOCAL-00003" summary="child props added, 2 lifecycle methods added (mounted, created)">
+      <created>1605395717421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605395717421</updated>
+    </task>
+    <task id="LOCAL-00004" summary="callbacks child-&gt;parent, errors util, components content txt">
+      <created>1605652065742</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605652065742</updated>
+    </task>
+    <task id="LOCAL-00005" summary="childList, emits -&gt; emitEvents">
+      <created>1605653296823</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605653296823</updated>
+    </task>
+    <task id="LOCAL-00006" summary="begin">
+      <created>1606056833931</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606056833932</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Reuseable components bug fixed">
+      <created>1606058991636</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606058991636</updated>
+    </task>
+    <task id="LOCAL-00008" summary="rerender moved, example components updated">
+      <created>1606153831419</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606153831419</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactor begin">
+      <created>1606230431396</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1606230431396</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor begin">
+      <created>1606583591615</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606583591615</updated>
+    </task>
+    <task id="LOCAL-00011" summary="render list added, flat component data and getters/setters removed">
+      <created>1606938378723</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1606938378724</updated>
+    </task>
+    <task id="LOCAL-00012" summary="render list refactor done">
+      <created>1607991056955</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1607991056955</updated>
+    </task>
+    <task id="LOCAL-00013" summary="render list setProps fix">
+      <created>1607994195846</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1607994195846</updated>
+    </task>
+    <task id="LOCAL-00014" summary="classes refactor, framework settings added">
+      <created>1610045792020</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1610045792020</updated>
+    </task>
+    <task id="LOCAL-00015" summary="component name removed, added free node">
+      <created>1610051309121</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1610051309121</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactor begin">
+      <created>1610055644925</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1610055644925</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor begin">
+      <created>1610055684140</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1610055684140</updated>
+    </task>
+    <task id="LOCAL-00018" summary="changeData method fixed">
+      <created>1610096006554</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1610096006554</updated>
+    </task>
+    <task id="LOCAL-00019" summary="component refactor - methods -&gt; events">
+      <created>1610096572373</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1610096572373</updated>
+    </task>
+    <task id="LOCAL-00020" summary="refactor">
+      <created>1615287595921</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1615287595921</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="text changed" />
+    <MESSAGE value="Component/Template/Events: isSelf added" />
+    <MESSAGE value="child props added, 2 lifecycle methods added (mounted, created)" />
+    <MESSAGE value="callbacks child-&gt;parent, errors util, components content txt" />
+    <MESSAGE value="childList, emits -&gt; emitEvents" />
+    <MESSAGE value="begin" />
+    <MESSAGE value="Reuseable components bug fixed" />
+    <MESSAGE value="rerender moved, example components updated" />
+    <MESSAGE value="render list added" />
+    <MESSAGE value="render list added, flat component data and getters/setters removed" />
+    <MESSAGE value="render list refactor done" />
+    <MESSAGE value="render list setProps fix" />
+    <MESSAGE value="classes refactor, framework settings added" />
+    <MESSAGE value="component name removed, added free node" />
+    <MESSAGE value="refactor begin" />
+    <MESSAGE value="changeData method fixed" />
+    <MESSAGE value="component refactor - methods -&gt; events" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="179" key="#Inspections" timestamp="1607989638592">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" key="#Inspections/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1607989638592" />
+    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1615287593944">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1615287593944" />
+    <state x="804" y="310" key="FileChooserDialogImpl" timestamp="1610047074875">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="804" y="310" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1610047074875" />
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom" timestamp="1613677189046">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="218" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1613677189046" />
+    <state width="1899" height="218" key="GridCell.Tab.0.center" timestamp="1613677189045">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="218" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1613677189045" />
+    <state width="1899" height="218" key="GridCell.Tab.0.left" timestamp="1613677189045">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="218" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1613677189045" />
+    <state width="1899" height="218" key="GridCell.Tab.0.right" timestamp="1613677189045">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="218" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1613677189045" />
+    <state x="820" y="231" key="RollbackChangesDialog" timestamp="1610051233866">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="820" y="231" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1610051233866" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1606942216933">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1606942216933" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1615287597427">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1615287597427" />
+    <state x="584" y="158" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1610047129152">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="584" y="158" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1610047129152" />
+    <state x="656" y="252" width="737" height="606" key="find.popup" timestamp="1613672541217">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="252" width="737" height="606" key="find.popup/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1613672541217" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1610050830491">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1610050830491" />
+  </component>
+</project>
