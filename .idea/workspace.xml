@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0737a998-1b01-4ae3-9536-b695e6c27189" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/sjs/sjs_state/Sjs_state.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sjs/sjs_dom/Sjs_dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjs/sjs_dom/Sjs_dom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sjs/sjs_unit/Sjs_unit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sjs/sjs_unit/Sjs_unit.js" afterDir="false" />
+    </list>
+    <list id="f2671541-fd33-4897-a053-7fb8cd58ff56" name="ignore" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="develop" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rQcCPLavhY3Vji57wqG0565w8z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="F:\IT\Projects\JS\SJS\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="F:\Programs\JetBrains\WebStorm 2019.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IT\Projects\JS\SoloJS" />
+      <recent name="F:\IT\Projects\JS\SJS" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="build-dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="clean" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clean" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.clean" />
+        <item itemvalue="npm.build-dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0737a998-1b01-4ae3-9536-b695e6c27189" name="Default Changelist" comment="" />
+      <changelist id="f2671541-fd33-4897-a053-7fb8cd58ff56" name="ignore" comment="" />
+      <created>1618911625216</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618911625216</updated>
+      <workItem from="1618911627115" duration="82000" />
+      <workItem from="1618911761516" duration="20920000" />
+      <workItem from="1618933513467" duration="2461000" />
+      <workItem from="1618993166025" duration="1777000" />
+      <workItem from="1619025057211" duration="8194000" />
+      <workItem from="1619094309070" duration="8352000" />
+      <workItem from="1619169380387" duration="27425000" />
+      <workItem from="1619203213494" duration="329000" />
+      <workItem from="1619263362443" duration="1768000" />
+      <workItem from="1619519032968" duration="1179000" />
+      <workItem from="1620064131698" duration="803000" />
+      <workItem from="1620499249236" duration="987000" />
+      <workItem from="1620502093290" duration="1463000" />
+      <workItem from="1620554297537" duration="11521000" />
+      <workItem from="1620646248042" duration="1020000" />
+      <workItem from="1621328461945" duration="17180000" />
+    </task>
+    <task id="LOCAL-00001" summary="global refactor">
+      <created>1620502631068</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1620502631068</updated>
+    </task>
+    <task id="LOCAL-00002" summary="global refactor">
+      <created>1620502793458</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1620502793459</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="global refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="global refactor" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="585" y="113" key="CommitChangelistDialog2" timestamp="1620502791867">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="113" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1620502791867" />
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom" timestamp="1621349304886">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="201" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1621349304886" />
+    <state width="1877" height="201" key="GridCell.Tab.0.center" timestamp="1621349304886">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="201" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1621349304886" />
+    <state width="1877" height="201" key="GridCell.Tab.0.left" timestamp="1621349304886">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="201" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1621349304886" />
+    <state width="1877" height="201" key="GridCell.Tab.0.right" timestamp="1621349304886">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="201" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1621349304886" />
+    <state x="807" y="436" key="VCS.ChangelistChooser" timestamp="1620502774327">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="807" y="436" key="VCS.ChangelistChooser/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1620502774327" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1620502801565">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1620502801565" />
+    <state x="656" y="252" width="737" height="606" key="find.popup" timestamp="1621346389250">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="252" width="737" height="606" key="find.popup/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1621346389250" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1620562061294">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1620562061294" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1618921275452">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1618921275452" />
+  </component>
+</project>

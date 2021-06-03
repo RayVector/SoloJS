@@ -1,8 +1,10 @@
-import { clearFlatTree, flatTree, replaceNode } from '../sjs_dom/Sjs_dom'
+import { clearFlatTree, flatTree, replaceNode, rootUnit } from '../sjs_dom/Sjs_dom'
+import { updatedDiff } from 'deep-object-diff'
+import { $click, $input } from '../sjs_dom/Sjs_dom_events'
 
 let depthLevel = 0
 
-export const renderList = (data) => {
+export const renderList = (data, key = null) => {
   const {
     i,
     list,
@@ -12,68 +14,87 @@ export const renderList = (data) => {
   } = data
 
   return i.data[list].map((item, index) => {
-    const user = Object.assign({}, component)
-    user.props = {}
-    props.forEach(prop => user.props[prop] = item[prop])
+    const listItem = new component()
+    listItem._listKey = key !== null ? item[key] : index
+    listItem.props = {}
+    props.forEach(prop => listItem.props[prop] = item[prop])
     events.forEach(event => {
-      user.props[event.name] = event(i)
+      listItem.props[event.name] = event(i)
     })
-    return user
+    return listItem
   })
 }
 
-export const changeData = (i) => {
-  // const currentNode = treeFinder(document.getElementById(appNodeId).children, newData.$depthLevel)
-  depthLevel = 0
-  const currentNode = flatTree[i.$depthLevel]
-  clearFlatTree()
-  const newNode = prepare(i, true)
-  return replaceNode(currentNode, newNode)
+export const updateApp = () => {
+  console.log('updateApp', rootUnit)
+  // const currentNode = flatTree[0]
+  // if (!currentNode) return false
+  // if (Object.values(updatedDiff(i, currentNode.$unit)).length) {
+  //   // depthLevel = i.$depthLevel
+  //   // clearFlatTree()
+  //   const newNode = prepare(i, true)
+  //   return replaceNode(currentNode, newNode)
+  // }
+  // const newNode = prepare(rootUnit, true)
+  return replaceNode(flatTree[0], prepare(rootUnit, true))
+  // return false
 }
 
 export const prepareContent = (content, item, isUpdate = false) => {
-  item.preparedContent = []
+  const updatedContent = []
   if (Array.isArray(content)) {
     content.forEach(contentItem => {
-      if (typeof contentItem === 'object') {
+      if (contentItem && typeof contentItem === 'object') {
         contentItem.$node = contentItem.node
-        item.preparedContent.push(prepare(contentItem, isUpdate))
+        updatedContent.push(prepare(contentItem, isUpdate))
       } else {
-        item.preparedContent.push(contentItem)
+        updatedContent.push(contentItem)
       }
     })
   } else {
-    item.preparedContent.push(content)
+    updatedContent.push(content)
+  }
+  item.preparedContent = updatedContent
+}
+
+export const setDepthLevel = unit => {
+  if (!unit.hasOwnProperty('$depthLevel')) {
+    unit.$depthLevel = depthLevel++
   }
 }
 
 export const prepare = (unit, isUpdate = false) => {
-  if (unit.hasOwnProperty('$depthLevel')) {
-    unit.$depthLevel = depthLevel
-    depthLevel = 1
-  } else unit.$depthLevel = depthLevel++
-  if (unit.render) {
+  // проблема в обнулении дерева и настройки уровня глубины у компонента
+  // возможно вынести i в глобальный стейт, миновав локальный стейт, но это лишит универсальности компонентов
+  // требуется настройка дерева и механизма определения уровня глубины компонента
+  // не менять глубину общую и локлаьную если при обновлении компонент найден в плоском дереве
+  // TODO: stoped here
+  if (unit.$depthLevel === undefined || unit.$depthLevel === null) setDepthLevel(unit)
+
+
+  // render
+  if (unit.hasOwnProperty('render')) {
     const render = unit.render(unit)
-    if (render.content && render.content.length) prepareContent(render.content, unit, isUpdate)
-    if (render.events && render.events.length) {
-      unit.events = render.events
-    }
-    if (render.styles) unit.styles = render.styles
+    console.log(111, render)
+    if (render.hasOwnProperty('content') && render.content.length) prepareContent(render.content, unit, isUpdate)
+    if (render.hasOwnProperty('events') && render.events.length) unit.events = render.events
+    if (render.hasOwnProperty('styles')) unit.styles = render.styles
   } else {
-    if (unit.content && unit.content.length) prepareContent(unit.content, unit, isUpdate)
+    if (unit.hasOwnProperty('content') && unit.content.length) prepareContent(unit.content, unit, isUpdate)
+
+    // !moved from outside if else! need to test behaviour
+    if (unit.hasOwnProperty('events') && unit.events.length) {
+      const preparedEvents = []
+      unit.events.forEach(unitEvent => {
+        if (typeof unitEvent === 'function') {
+          preparedEvents.push(unitEvent())
+        } else preparedEvents.push(unitEvent)
+      })
+      unit.events = preparedEvents
+    }
   }
 
-  if (unit.events && unit.events.length) {
-    const preparedEvents = []
-    unit.events.forEach(unitEvent => {
-      if (typeof unitEvent === 'function') {
-        // stoped here: add events to non listed node
-        preparedEvents.push(unitEvent())
-      }
-      else preparedEvents.push(unitEvent)
-    })
-    unit.events = preparedEvents
-  }
+  if (!unit.hasOwnProperty('if')) unit.if = true
 
   // get props
   // set props

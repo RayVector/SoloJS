@@ -1,5 +1,5 @@
 import User from './User'
-import { changeData, renderList } from '../sjs/sjs_unit/Sjs_unit'
+import { updateApp, renderList } from '../sjs/sjs_unit/Sjs_unit'
 import { $click, $input } from '../sjs/sjs_dom/Sjs_dom_events'
 
 const m_updateName = i => {
@@ -9,18 +9,24 @@ const m_updateName = i => {
       // i.data.users.find(user => user.id === id).name = 'Vector'
       if (id === 1) {
         i.data.users[0].name = 'Vector'
-        changeData(i)
+        updateApp()
+        // HOOK: updated
+        // i.updated(newUnit => {
+        //   newUnit.data.users.push({
+        //     id: 4,
+        //     name: 'Mike'
+        //   })
+        //   updateApp(newUnit)
+        //
+        //   newUnit.updated(newUnitUpdated => {
+        //     newUnitUpdated.data.users.push({
+        //       id: 5,
+        //       name: 'Kane'
+        //     })
+        //     updateApp(newUnitUpdated)
+        //   })
+        // })
       }
-
-      // HOOK: updated
-      // i.updated((newUnit) => {
-      //   console.log('updated', newUnit)
-      //   newUnit.data.users.push({
-      //     id: 4,
-      //     name: 'Mike'
-      //   })
-      //   changeData(newUnit)
-      // })
     }
   })
 }
@@ -36,7 +42,7 @@ const m_createUser = i => {
           name: newName
         })
         i.data.newUserName = ''
-        changeData(i)
+        updateApp()
       }
     }
   })
@@ -50,7 +56,7 @@ const r_title = i => ({
       type: $click,
       cb: () => {
         i.data.text = 'Hello SJS!'
-        changeData(i)
+        updateApp()
       }
     }
   ]
@@ -62,13 +68,15 @@ const r_addUser = i => ({
   events: [m_createUser(i)]
 })
 
-const r_userInputShow = i => ({
-  node: 'span',
-  styles: {
-    marginLeft: '20px'
-  },
-  content: `Type: ${i.data.newUserName}`
-})
+const r_userInputShow = i => {
+  return ({
+    node: 'span',
+    styles: {
+      marginLeft: '20px'
+    },
+    content: `Type: ${i.data.newUserName}`
+  })
+}
 
 const r_userInput = i => ({
   node: 'input',
@@ -81,7 +89,7 @@ const r_userInput = i => ({
       type: $input,
       cb: e => {
         i.data.newUserName = e.target.value
-        changeData(i)
+        updateApp()
       }
     }
   ]
@@ -89,22 +97,15 @@ const r_userInput = i => ({
 
 const r_userList = i => ({
   node: 'div',
-  // inlineStyles
-  // styles: {
-  //   marginTop: '10px',
-  //   padding: '20px',
-  //   border: '1px solid black',
-  //   width: '300px',
-  // },
   classes: ['userList'],
   content: [
     ...renderList({
       i,
       list: 'users',
-      component: User,
+      component: () => ({ ...User }),
       props: ['id', 'name'],
       events: [m_updateName]
-    })
+    }, 'id')
   ]
 })
 

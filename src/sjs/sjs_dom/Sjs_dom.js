@@ -1,4 +1,9 @@
+import { $input } from './Sjs_dom_events'
+import { updateApp } from '../sjs_unit/Sjs_unit'
+
 export let flatTree = []
+export let appNodeId = null
+export let rootUnit = null
 
 export const activeInputOnReplace = activeNodeElement => {
   const oldActiveElement = flatTree[activeNodeElement.$depthLevel]
@@ -17,6 +22,7 @@ export const activeInputOnReplace = activeNodeElement => {
 
 export const replaceNode = (currentNode, newUnit) => {
   const activeNodeElement = document.activeElement
+  console.log(11, activeNodeElement)
   const newNode = createNode(newUnit)
   currentNode.replaceWith(newNode)
   if (activeNodeElement) activeInputOnReplace(activeNodeElement)
@@ -29,7 +35,9 @@ export const replaceNode = (currentNode, newUnit) => {
 
 export const clearFlatTree = () => flatTree = []
 
-export const addNode = (node, secondNode) => node.appendChild(secondNode)
+export const addNode = (node, secondNode) => {
+  node.appendChild(secondNode)
+}
 
 export const setNodeAttribute = (node, { name, value }) => {
   node.setAttribute(name, value)
@@ -37,40 +45,51 @@ export const setNodeAttribute = (node, { name, value }) => {
 
 export const createNode = unit => {
   const newNode = document.createElement(unit.$node || 'div')
-  flatTree.push(newNode)
+  // deep clone
+  newNode.$unit = unit
+  if (!flatTree[unit.$depthLevel]) flatTree.push(newNode)
+  else flatTree[unit.$depthLevel] = newNode
   // preparedContent
-  if (unit.preparedContent && unit.preparedContent.length) {
+  if (unit.hasOwnProperty('preparedContent') && unit.preparedContent.length) {
     unit.preparedContent.forEach(contentItem => {
-      if (typeof contentItem === 'object') addNode(newNode, createNode(contentItem))
+      if (typeof contentItem === 'object') {
+        if (contentItem.if) {
+          addNode(newNode, createNode(contentItem))
+        }
+      }
     })
   }
 
   // content
   // TODO: refactor (simplify)
-  if (typeof unit === 'object' && unit.content && Array.isArray(unit.content)) {
+
+  if (typeof unit === 'object' && unit.hasOwnProperty('content') && Array.isArray(unit.content)) {
     unit.content = unit.content.filter(contentItem => !contentItem.hasOwnProperty('render'))
     if (unit.content.length) newNode.innerHTML = unit.content.join()
   } else if (typeof unit === 'string') {
     newNode.innerHTML = unit
   } else {
-    if (unit.content && unit.content.length) newNode.innerHTML = unit.content
+    if (unit.hasOwnProperty('content') && unit.content.length) {
+      newNode.innerHTML = unit.content
+    }
   }
+
   // events
-  if (unit.events && unit.events.length) unit.events.forEach(event => {
+  if (unit.hasOwnProperty('events') && unit.events.length) unit.events.forEach(event => {
     newNode.addEventListener(event.type, event.cb)
   })
   // styles
-  if (unit.styles) setNodeStyles(newNode, unit.styles)
+  if (unit.hasOwnProperty('styles')) setNodeStyles(newNode, unit.styles)
   // css classes
-  if (unit.classes) {
+  if (unit.hasOwnProperty('classes')) {
     unit.classes.forEach(attrClass => {
       setNodeAttribute(newNode, { name: 'class', value: attrClass })
     })
   }
   // css
-  if (unit.css) createNodeCss(newNode, unit.css)
+  if (unit.hasOwnProperty('css')) createNodeCss(newNode, unit.css)
   // value
-  if (unit.value) {
+  if (unit.hasOwnProperty('value')) {
     setNodeAttribute(newNode, { name: 'value', value: unit.value })
   }
 
@@ -97,9 +116,9 @@ const createNodeCss = (node, css) => {
 
 }
 
-export let appNodeId = null
 
 export const buildRoot = (nodeId, unit) => {
   appNodeId = nodeId
+  rootUnit = unit
   addNode(document.getElementById(nodeId), createNode(unit))
 }

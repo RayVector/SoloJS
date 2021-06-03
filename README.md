@@ -44,7 +44,7 @@ template = {
 ```javascript
 methods = {
     changeText: () => {
-      this.changeData({ // dynamic method for changing state
+      this.updateApp({ // dynamic method for changing state
         text: this.newText,
       })
     },
@@ -112,7 +112,7 @@ class MainElement extends Sjs_el {
 
   methods = {
     changeText: () => {
-      this.changeData({
+      this.updateApp({
         text: this.newText,
       })
     },
